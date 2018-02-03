@@ -43,6 +43,60 @@ def preprocessing(im_bw):
     return im_bw
 
 
+
+def characterSegmentation(thinning_img):
+    #tinging_img=noise_clearing(tinging_img)
+
+    arr = []
+    for i in range(len(thinning_img[0])):
+        whitePixel = 0
+        for j in range(len(thinning_img)):
+            if thinning_img[j, i] == 255:
+                whitePixel += 1
+
+        arr.append(2)
+
+        if whitePixel <= 1:
+            arr[i] = whitePixel
+    x = 0
+    for i in arr:
+        if i > 0:
+            break
+        x += 1
+    y = len(arr)
+    for i in reversed(arr):
+        if i > 0:
+            break
+        y -= 1
+
+    start, end, psc, threshold = 0, 0, [], 5
+    # print(arr)
+    # print(x)
+    psc.append(x)
+    for i in range(x + 1, y):
+        if not arr[i] == 2 and start == 0:
+            start = i
+        elif arr[i] == 2 and not start == 0:
+            end = i - 1
+        if not start == 0 and not end == 0:
+            if end - start >= threshold or arr[start] == 0 or arr[end] == 0:
+                ss = math.floor((start + end) / 2)
+                psc.append(ss)
+                for j in range(len(thinning_img)):
+                    thinning_img[j, ss] = 200
+            start, end = 0, 0
+    #cv2.imshow("blaadsadasd", thinning_img)
+    arr_img = []
+    height, width = thinning_img.shape
+    #print(psc)
+    for i in range(0, len(psc) - 1):
+        arr_img.append(thinning_img[0:height, psc[i]:psc[i + 1]])
+    arr_img.append(thinning_img[0:height, psc[-1]:y])
+    i = 0
+    for img in arr_img:
+        i += 1
+        cv2.imwrite("words-result\\" + str(counter()) + ".png", img)
+
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
@@ -59,10 +113,11 @@ def colSegmentation(img):
         if blackPixel >= int(height * 3/4):
             Boundries.append(i)
     for i in range(0, len(Boundries) - 1):
-        crop = im_bw[0 + 2:height - 3, Boundries[i] + 2:Boundries[i + 1]]
+        crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
         img = str(counter())
         if len(crop[0]) > 10 and len(crop) > 10:
             cv2.imwrite("cols\\" + img + ".png", crop)
+            characterSegmentation(crop)
 
 
 def rowSegmentation(img):
@@ -95,43 +150,6 @@ def rowSegmentation(img):
             if len(croppedImage) > 10:
                 cv2.imwrite("rows\\" + str(x) + ".png", croppedImage)
                 colSegmentation(croppedImage)
-
-
-def characterSegmentation(tinging_img):
-    arr = []
-    for i in range(len(tinging_img[0])):
-        whitePixel = 0
-        for j in range(len(tinging_img)):
-            if tinging_img[j, i] == 255:
-                whitePixel += 1
-
-        arr.append(2)
-
-        if whitePixel <= 1:
-            arr[i] = whitePixel
-            # for j in range(len(tinging_img)):
-            # tinging_img[j, i]=200
-    x = 0
-    for i in arr:
-        if i > 0:
-            break
-        x += 1
-    print(arr)
-    start, end, psc, threshold = 0, 0, [], 7
-    for i in range(x + 1, len(arr) - 1):
-        if not arr[i] == 2 and start == 0:
-            start = i
-        elif arr[i] == 2 and not start == 0:
-            end = i - 1
-        if not start == 0 and not end == 0:
-            if end - start > threshold or arr[start] == 0 or arr[end] == 0:
-                ss = math.floor((start + end) / 2)
-                psc.append(ss)
-                for j in range(len(tinging_img)):
-                    tinging_img[j, ss] = 200
-                crop_img = tinging_img[200:400, 100:300]
-            start, end = 0, 0
-    print(psc)
 
 
 def main():

@@ -2,8 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdf23979-ecaf-47ef-9f86-7579edbb8da0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/graduation-project.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/22.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/25.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/27.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/30.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/33.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/35.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/38.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/40.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/42.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/45.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/50.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/53.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/56.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/59.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/62.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/64.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/67.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/70.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/73.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/76.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/79.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/82.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/cols/84.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/22.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/30.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/40.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/48.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/58.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/rows/6.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/main.py" afterPath="$PROJECT_DIR$/Code/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +46,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/graduation_project$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1517345014911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graduation_project$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1517666825414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code" />
+    <SUITE FILE_PATH="coverage/graduation_project$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1517684130430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code" />
     <SUITE FILE_PATH="coverage/graduation_project$main.coverage" NAME="main Coverage Results" MODIFIED="1517432958307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -23,9 +54,11 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="190">
+              <caret line="146" column="38" lean-forward="true" selection-start-line="146" selection-start-column="38" selection-end-line="146" selection-end-column="38" />
+              <folding>
+                <element signature="e#1#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,6 +70,8 @@
       <find>blackPixelCount</find>
       <find>Searching for Usages in Project Files...</find>
       <find>noise_clearing</find>
+      <find>show</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,7 +236,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3592233" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2588997" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -235,7 +270,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="64" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -245,7 +282,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -255,7 +294,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
           <caret line="66" column="8" lean-forward="false" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -263,9 +304,11 @@
     <entry file="file://$PROJECT_DIR$/preprocessing.py" />
     <entry file="file://$PROJECT_DIR$/Code/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="190">
+          <caret line="146" column="38" lean-forward="true" selection-start-line="146" selection-start-column="38" selection-end-line="146" selection-end-column="38" />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
