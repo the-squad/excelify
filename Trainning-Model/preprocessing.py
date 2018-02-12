@@ -45,7 +45,7 @@ def crop(img):
         crop_img = img[upper-avg:upper+width-avg, left:left + width]
     return crop_img
 
-def preProcessing(img):
+def preProcessing(img, f):
     img,_,_ = cv2.split(img)
     img = crop(img)
     img = scale(img)
@@ -55,7 +55,6 @@ def preProcessing(img):
     string = string.replace("\n", "")
     string = string.replace("]","").replace("[","")
     string = re.sub(r"\s+"," ",string) + "\n"
-    f = open('j.txt' , 'a+')
     f.write(string)
 
 
