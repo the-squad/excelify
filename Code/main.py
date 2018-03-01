@@ -97,6 +97,44 @@ def characterSegmentation(thinning_img):
         i += 1
         cv2.imwrite("words-result\\" + str(counter()) + ".png", img)
 
+
+
+def wordSegmentaion(img):
+    img2 = preprocessing(img)
+    height, width , x = img.shape
+    histogram = []
+    start = []
+    end = []
+    cropPoints = []
+    for i in range(len(img2[0])):
+        sum = 0
+        for j in range(len(img2)):
+            if img2[j][i][0] == 255:
+                sum += 1
+        histogram.append(sum/height)
+    for x in range(len(histogram)-1):
+        if histogram[x] == float(0) and histogram[x+1] > float(0):
+            start.append(x)
+        elif histogram[x+1] == float(0) and histogram[x] > float(0):
+            end.append(x)
+    print(start)
+    print(end)
+    for i in range(0,len(start)-1):
+        if start[i+1]-end[i] > 21: #space Threshold
+            cropPoints.append(start[i+1])
+    print(cropPoints)
+    for i in range(0,len(cropPoints)):
+        if i == 0: #firstWord
+            croppedImage = img2[0:height , 0:cropPoints[i]]
+            cv2.imwrite("wordSegmentation\\" + str(i) + ".png", croppedImage)
+        else: #anyWord
+            croppedImage = img2[0: height ,cropPoints[i-1]:cropPoints[i]]
+            cv2.imwrite("wordSegmentation\\"+str(i)+".png", croppedImage)
+    croppedImage = img2[0:height, cropPoints[len(cropPoints)-1]:width] #lastWord
+    cv2.imwrite("wordSegmentation\\lastWord.png", croppedImage)
+    cv2.imshow("dw",img2)
+
+
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
@@ -117,7 +155,7 @@ def colSegmentation(img):
         img = str(counter())
         if len(crop[0]) > 10 and len(crop) > 10:
             cv2.imwrite("cols\\" + img + ".png", crop)
-            characterSegmentation(crop)
+            #wordSegmentaion(crop)                                //Here
 
 
 def rowSegmentation(img):
