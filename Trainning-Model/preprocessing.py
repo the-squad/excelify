@@ -39,13 +39,13 @@ def crop(img):
     height = lower-upper
     if  width < height:
         avg = int((128-width)/4)
-        crop_img = img[upper:upper+height, left-avg:left+height-avg]
+        crop_img = img[upper:upper+height, left:left+height]
     else:
         avg = int((128 - width) / 4)
-        crop_img = img[upper-avg:upper+width-avg, left:left + width]
+        crop_img = img[upper:upper+width, left:left + width]
     return crop_img
 
-def preProcessing(img):
+def preProcessing(img, f):
     img,_,_ = cv2.split(img)
     img = crop(img)
     img = scale(img)
@@ -55,7 +55,6 @@ def preProcessing(img):
     string = string.replace("\n", "")
     string = string.replace("]","").replace("[","")
     string = re.sub(r"\s+"," ",string) + "\n"
-    f = open('j.txt' , 'a+')
     f.write(string)
 
 
