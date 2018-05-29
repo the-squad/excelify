@@ -93,7 +93,7 @@ def characterSegmentation(thinning_img):
     i = 0
     for img in arr_img:
         i += 1
-        cv2.imwrite("words-result\\" + str(counter()) + ".png", img)
+        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", img)
 
 def colSegmentation(img):
 
@@ -114,7 +114,7 @@ def colSegmentation(img):
         crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
         img = str(counter())
         if len(crop[0]) > 10 and len(crop) > 10:
-            cv2.imwrite("cols\\" + img + ".png", crop)
+            cv2.imwrite("output\\cols\\" + img + ".png", crop)
             wordSegmentaion(crop)                               #Here
 
 
@@ -146,24 +146,24 @@ def wordSegmentaion(img2):
         if i == 0:  # firstWord
             croppedImage = img2[0:height, 0:cropPoints[i]]
             if len(croppedImage[0]) > 10:
-                cv2.imwrite("wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+                cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
             #cv2.imshow(str(i) + ".png", croppedImage)
         else:  # anyWord
             croppedImage = img2[0: height, cropPoints[i - 1]:cropPoints[i]]
             if len(croppedImage[0]) > 10:
-                cv2.imwrite("wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+                cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
             #cv2.imshow(str(i) + ".png", croppedImage)
 
     print(cropPoints)
 
     if len(cropPoints) == 0:
         #cv2.imshow(str(random.randint(1, 101)) + ".png", img2)
-        cv2.imwrite("wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", img2)
+        cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", img2)
     else:
         croppedImage = img2[0:height, cropPoints[len(cropPoints) - 1]:width]  # lastWord
         #cv2.imshow(str(random.randint(1, 10000)) + ".png", croppedImage)
         if len(croppedImage[0]) > 10:
-            cv2.imwrite("wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+            cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
 
     cv2.waitKey(0)
 
@@ -197,12 +197,16 @@ def rowSegmentation(img):
         if x <= len(points) - 3:
             croppedImage = img[points[x][1]:points[x + 3][1], points[x][0]:points[x + 3][0]]
             if len(croppedImage) > 10:
-                cv2.imwrite("rows\\" + str(x) + ".png", croppedImage)
+                cv2.imwrite("output\\rows\\" + str(x) + ".png", croppedImage)
                 colSegmentation(croppedImage)
 
 
 def main():
-    img = cv2.imread("Tables-examples\\kk.png")
+    os.makedirs("output\\rows")
+    os.makedirs("output\\cols")
+    os.makedirs("output\\wordSegmentation")
+    os.makedirs("output\\words-result")
+    img = cv2.imread("Tables-examples\\table.png")
     rowSegmentation(img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
