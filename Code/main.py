@@ -119,22 +119,10 @@ def colSegmentation(img):
 
 
 def wordSegmentaion(img2):
-
-    # cv2.imshow("s",img2)
-    # cv2.waitKey()
-
-    image = cv2.bitwise_not(img2)
-    # cv2.imshow("s", image)
-    # cv2.waitKey()
-    # binary
-    ret, thresh = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY_INV)
-    # cv2.imshow('second',thresh)
-    # cv2.waitKey(0)
-
     # dilation
-    kernel = np.ones((5, 7), np.uint8)
+    kernel = np.ones((5, 8), np.uint8)
 
-    img_dilation = cv2.dilate(thresh, kernel, iterations=1)
+    img_dilation = cv2.dilate(img2, kernel, iterations=1)
     #cv2.imshow('dilated',img_dilation)
     #cv2.waitKey(0)
 
@@ -149,16 +137,17 @@ def wordSegmentaion(img2):
         x, y, w, h = cv2.boundingRect(ctr)
 
         # Getting ROI
-        roi = image[y:y + h, x:x + w]
+        roi = img2[y:y + h, x:x + w]
 
         # show ROI
-        #cv2.imshow('segment no:'+str(i),roi)
+
         height = roi.shape[0]
         width = roi.shape[1]
-        if(height>10 and width>10):
-            cv2.imwrite("output\\words-result\\"+str(counter()) + ".png", roi)
-            cv2.rectangle(image, (x, y), (x + w, y + h), (90, 0, 255), 2)
-            #cv2.waitKey(0)
+        if(height>10 and width>5):
+            cv2.imshow('segment no:' + str(i), roi)
+            cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi)
+            cv2.rectangle(img2, (x, y), (x + w, y + h), (90, 0, 255), 2)
+            cv2.waitKey(0)
 
 def rowSegmentation(img):
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
