@@ -119,53 +119,46 @@ def colSegmentation(img):
 
 
 def wordSegmentaion(img2):
-    height, width = img2.shape
-    histogram = []
-    start = []
-    end = []
-    cropPoints = []
 
-    for i in range(len(img2[0])):
-        sum = 0
-        for j in range(len(img2)):
-            if img2[j][i] == 255:
-                sum += 1
-        histogram.append(sum/height)
-    for x in range(len(histogram)-1):
-        if histogram[x] == float(0) and histogram[x+1] > float(0):
-            start.append(x)
-        elif histogram[x+1] == float(0) and histogram[x] > float(0):
-            end.append(x)
-    print(start)
-    print(end)
-    for i in range(0, len(start) - 1):
-        if start[i + 1] - end[i] > 10:  # space Threshold
-            cropPoints.append(start[i + 1])
-    print(cropPoints)
-    for i in range(0, len(cropPoints)):
-        if i == 0:  # firstWord
-            croppedImage = img2[0:height, 0:cropPoints[i]]
-            if len(croppedImage[0]) > 10:
-                cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
-            #cv2.imshow(str(i) + ".png", croppedImage)
-        else:  # anyWord
-            croppedImage = img2[0: height, cropPoints[i - 1]:cropPoints[i]]
-            if len(croppedImage[0]) > 10:
-                cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
-            #cv2.imshow(str(i) + ".png", croppedImage)
+    # cv2.imshow("s",img2)
+    # cv2.waitKey()
 
-    print(cropPoints)
+    image = cv2.bitwise_not(img2)
+    # cv2.imshow("s", image)
+    # cv2.waitKey()
+    # binary
+    ret, thresh = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY_INV)
+    # cv2.imshow('second',thresh)
+    # cv2.waitKey(0)
 
-    if len(cropPoints) == 0:
-        #cv2.imshow(str(random.randint(1, 101)) + ".png", img2)
-        cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", img2)
-    else:
-        croppedImage = img2[0:height, cropPoints[len(cropPoints) - 1]:width]  # lastWord
-        #cv2.imshow(str(random.randint(1, 10000)) + ".png", croppedImage)
-        if len(croppedImage[0]) > 10:
-            cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+    # dilation
+    kernel = np.ones((5, 7), np.uint8)
 
-    cv2.waitKey(0)
+    img_dilation = cv2.dilate(thresh, kernel, iterations=1)
+    #cv2.imshow('dilated',img_dilation)
+    #cv2.waitKey(0)
+
+    # find contours
+    im2, ctrs, hier = cv2.findContours(img_dilation.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # sort contours
+    sorted_ctrs = sorted(ctrs, key=lambda ctr: cv2.boundingRect(ctr)[0])
+    print(len(sorted_ctrs))
+    for i, ctr in enumerate(sorted_ctrs):
+        # Get bounding box
+        x, y, w, h = cv2.boundingRect(ctr)
+
+        # Getting ROI
+        roi = image[y:y + h, x:x + w]
+
+        # show ROI
+        #cv2.imshow('segment no:'+str(i),roi)
+        height = roi.shape[0]
+        width = roi.shape[1]
+        if(height>10 and width>10):
+            cv2.imwrite("output\\words-result\\"+str(counter()) + ".png", roi)
+            cv2.rectangle(image, (x, y), (x + w, y + h), (90, 0, 255), 2)
+            #cv2.waitKey(0)
 
 def rowSegmentation(img):
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -202,10 +195,10 @@ def rowSegmentation(img):
 
 
 def main():
-    os.makedirs("output\\rows")
-    os.makedirs("output\\cols")
-    os.makedirs("output\\wordSegmentation")
-    os.makedirs("output\\words-result")
+   # os.makedirs("output\\rows")
+   #  os.makedirs("output\\cols")
+   #  os.makedirs("output\\wordSegmentation")
+   #  os.makedirs("output\\words-result")
     img = cv2.imread("Tables-examples\\table.png")
     rowSegmentation(img)
     cv2.waitKey(0)
