@@ -1,0 +1,244 @@
+C:\Users\mohamed\Anaconda3\envs\tensorflow\python.exe "F:/FCIH/Level4/2nd Semester/pattern/Project/Final/CNN_model.py"
+C:\Users\mohamed\Anaconda3\envs\tensorflow\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+Train on 78959 samples, validate on 33840 samples
+Epoch 1/50
+2018-05-29 23:08:17.107517: I T:\src\github\tensorflow\tensorflow\core\platform\cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2018-05-29 23:08:18.904840: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1344] Found device 0 with properties:
+name: GeForce 840M major: 5 minor: 0 memoryClockRate(GHz): 1.124
+pciBusID: 0000:03:00.0
+totalMemory: 4.00GiB freeMemory: 3.36GiB
+2018-05-29 23:08:18.952597: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-05-29 23:08:42.946632: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-05-29 23:08:42.946957: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:917]      0
+2018-05-29 23:08:42.947166: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:930] 0:   N
+2018-05-29 23:08:43.054997: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3093 MB memory) -> physical GPU (device: 0, name: GeForce 840M, pci bus id: 0000:03:00.0, compute capability: 5.0)
+ - 95s - loss: 3.2389 - acc: 0.1555 - val_loss: 2.0375 - val_acc: 0.5437
+
+Epoch 00001: val_acc improved from -inf to 0.54371, saving model to model.h5
+Epoch 2/50
+ - 46s - loss: 2.1440 - acc: 0.3981 - val_loss: 1.3268 - val_acc: 0.6613
+
+Epoch 00002: val_acc improved from 0.54371 to 0.66132, saving model to model.h5
+Epoch 3/50
+ - 54s - loss: 1.6920 - acc: 0.5090 - val_loss: 1.0284 - val_acc: 0.7182
+
+Epoch 00003: val_acc improved from 0.66132 to 0.71823, saving model to model.h5
+Epoch 4/50
+ - 45s - loss: 1.4331 - acc: 0.5728 - val_loss: 0.8537 - val_acc: 0.7529
+
+Epoch 00004: val_acc improved from 0.71823 to 0.75293, saving model to model.h5
+Epoch 5/50
+ - 46s - loss: 1.2727 - acc: 0.6161 - val_loss: 0.7673 - val_acc: 0.7729
+
+Epoch 00005: val_acc improved from 0.75293 to 0.77293, saving model to model.h5
+Epoch 6/50
+ - 46s - loss: 1.1593 - acc: 0.6461 - val_loss: 0.6947 - val_acc: 0.7876
+
+Epoch 00006: val_acc improved from 0.77293 to 0.78762, saving model to model.h5
+Epoch 7/50
+ - 47s - loss: 1.0653 - acc: 0.6717 - val_loss: 0.6393 - val_acc: 0.7994
+
+Epoch 00007: val_acc improved from 0.78762 to 0.79938, saving model to model.h5
+Epoch 8/50
+ - 49s - loss: 0.9995 - acc: 0.6890 - val_loss: 0.6009 - val_acc: 0.8085
+
+Epoch 00008: val_acc improved from 0.79938 to 0.80845, saving model to model.h5
+Epoch 9/50
+ - 49s - loss: 0.9459 - acc: 0.7051 - val_loss: 0.5744 - val_acc: 0.8135
+
+Epoch 00009: val_acc improved from 0.80845 to 0.81353, saving model to model.h5
+Epoch 10/50
+ - 50s - loss: 0.8891 - acc: 0.7219 - val_loss: 0.5446 - val_acc: 0.8212
+
+Epoch 00010: val_acc improved from 0.81353 to 0.82125, saving model to model.h5
+Epoch 11/50
+ - 49s - loss: 0.8521 - acc: 0.7295 - val_loss: 0.5289 - val_acc: 0.8243
+
+Epoch 00011: val_acc improved from 0.82125 to 0.82429, saving model to model.h5
+Epoch 12/50
+ - 46s - loss: 0.8173 - acc: 0.7385 - val_loss: 0.5067 - val_acc: 0.8297
+
+Epoch 00012: val_acc improved from 0.82429 to 0.82967, saving model to model.h5
+Epoch 13/50
+ - 47s - loss: 0.7937 - acc: 0.7467 - val_loss: 0.4938 - val_acc: 0.8332
+
+Epoch 00013: val_acc improved from 0.82967 to 0.83324, saving model to model.h5
+Epoch 14/50
+ - 47s - loss: 0.7689 - acc: 0.7547 - val_loss: 0.4854 - val_acc: 0.8357
+
+Epoch 00014: val_acc improved from 0.83324 to 0.83570, saving model to model.h5
+Epoch 15/50
+ - 55s - loss: 0.7455 - acc: 0.7601 - val_loss: 0.4711 - val_acc: 0.8391
+
+Epoch 00015: val_acc improved from 0.83570 to 0.83907, saving model to model.h5
+Epoch 16/50
+ - 43s - loss: 0.7244 - acc: 0.7682 - val_loss: 0.4597 - val_acc: 0.8426
+
+Epoch 00016: val_acc improved from 0.83907 to 0.84261, saving model to model.h5
+Epoch 17/50
+ - 45s - loss: 0.7070 - acc: 0.7718 - val_loss: 0.4522 - val_acc: 0.8453
+
+Epoch 00017: val_acc improved from 0.84261 to 0.84527, saving model to model.h5
+Epoch 18/50
+ - 44s - loss: 0.6948 - acc: 0.7760 - val_loss: 0.4449 - val_acc: 0.8472
+
+Epoch 00018: val_acc improved from 0.84527 to 0.84719, saving model to model.h5
+Epoch 19/50
+ - 44s - loss: 0.6781 - acc: 0.7800 - val_loss: 0.4383 - val_acc: 0.8493
+
+Epoch 00019: val_acc improved from 0.84719 to 0.84935, saving model to model.h5
+Epoch 20/50
+ - 46s - loss: 0.6610 - acc: 0.7845 - val_loss: 0.4323 - val_acc: 0.8507
+
+Epoch 00020: val_acc improved from 0.84935 to 0.85071, saving model to model.h5
+Epoch 21/50
+ - 52s - loss: 0.6495 - acc: 0.7886 - val_loss: 0.4257 - val_acc: 0.8522
+
+Epoch 00021: val_acc improved from 0.85071 to 0.85219, saving model to model.h5
+Epoch 22/50
+ - 48s - loss: 0.6378 - acc: 0.7925 - val_loss: 0.4194 - val_acc: 0.8548
+
+Epoch 00022: val_acc improved from 0.85219 to 0.85476, saving model to model.h5
+Epoch 23/50
+ - 49s - loss: 0.6289 - acc: 0.7961 - val_loss: 0.4155 - val_acc: 0.8558
+
+Epoch 00023: val_acc improved from 0.85476 to 0.85576, saving model to model.h5
+Epoch 24/50
+ - 49s - loss: 0.6177 - acc: 0.7973 - val_loss: 0.4081 - val_acc: 0.8570
+
+Epoch 00024: val_acc improved from 0.85576 to 0.85703, saving model to model.h5
+Epoch 25/50
+ - 49s - loss: 0.6114 - acc: 0.8003 - val_loss: 0.4061 - val_acc: 0.8580
+
+Epoch 00025: val_acc improved from 0.85703 to 0.85798, saving model to model.h5
+Epoch 26/50
+ - 45s - loss: 0.5989 - acc: 0.8025 - val_loss: 0.4020 - val_acc: 0.8589
+
+Epoch 00026: val_acc improved from 0.85798 to 0.85887, saving model to model.h5
+Epoch 27/50
+ - 44s - loss: 0.5924 - acc: 0.8053 - val_loss: 0.3986 - val_acc: 0.8603
+
+Epoch 00027: val_acc improved from 0.85887 to 0.86034, saving model to model.h5
+Epoch 28/50
+ - 44s - loss: 0.5891 - acc: 0.8061 - val_loss: 0.3969 - val_acc: 0.8614
+
+Epoch 00028: val_acc improved from 0.86034 to 0.86141, saving model to model.h5
+Epoch 29/50
+ - 45s - loss: 0.5799 - acc: 0.8098 - val_loss: 0.3951 - val_acc: 0.8608
+
+Epoch 00029: val_acc did not improve
+Epoch 30/50
+ - 45s - loss: 0.5747 - acc: 0.8099 - val_loss: 0.3919 - val_acc: 0.8622
+
+Epoch 00030: val_acc improved from 0.86141 to 0.86217, saving model to model.h5
+Epoch 31/50
+ - 915s - loss: 0.5693 - acc: 0.8132 - val_loss: 0.3861 - val_acc: 0.8636
+
+Epoch 00031: val_acc improved from 0.86217 to 0.86356, saving model to model.h5
+Epoch 32/50
+ - 183s - loss: 0.5622 - acc: 0.8143 - val_loss: 0.3853 - val_acc: 0.8634
+
+Epoch 00032: val_acc did not improve
+Epoch 33/50
+ - 42s - loss: 0.5544 - acc: 0.8165 - val_loss: 0.3818 - val_acc: 0.8644
+
+Epoch 00033: val_acc improved from 0.86356 to 0.86436, saving model to model.h5
+Epoch 34/50
+ - 42s - loss: 0.5486 - acc: 0.8168 - val_loss: 0.3793 - val_acc: 0.8648
+
+Epoch 00034: val_acc improved from 0.86436 to 0.86483, saving model to model.h5
+Epoch 35/50
+ - 42s - loss: 0.5475 - acc: 0.8175 - val_loss: 0.3769 - val_acc: 0.8663
+
+Epoch 00035: val_acc improved from 0.86483 to 0.86634, saving model to model.h5
+Epoch 36/50
+ - 42s - loss: 0.5399 - acc: 0.8205 - val_loss: 0.3736 - val_acc: 0.8676
+
+Epoch 00036: val_acc improved from 0.86634 to 0.86764, saving model to model.h5
+Epoch 37/50
+ - 41s - loss: 0.5350 - acc: 0.8224 - val_loss: 0.3732 - val_acc: 0.8669
+
+Epoch 00037: val_acc did not improve
+Epoch 38/50
+ - 42s - loss: 0.5316 - acc: 0.8217 - val_loss: 0.3703 - val_acc: 0.8681
+
+Epoch 00038: val_acc improved from 0.86764 to 0.86811, saving model to model.h5
+Epoch 39/50
+ - 43s - loss: 0.5275 - acc: 0.8242 - val_loss: 0.3669 - val_acc: 0.8692
+
+Epoch 00039: val_acc improved from 0.86811 to 0.86921, saving model to model.h5
+Epoch 40/50
+ - 44s - loss: 0.5229 - acc: 0.8256 - val_loss: 0.3662 - val_acc: 0.8694
+
+Epoch 00040: val_acc improved from 0.86921 to 0.86939, saving model to model.h5
+Epoch 41/50
+ - 43s - loss: 0.5177 - acc: 0.8261 - val_loss: 0.3647 - val_acc: 0.8706
+
+Epoch 00041: val_acc improved from 0.86939 to 0.87057, saving model to model.h5
+Epoch 42/50
+ - 43s - loss: 0.5143 - acc: 0.8272 - val_loss: 0.3623 - val_acc: 0.8702
+
+Epoch 00042: val_acc did not improve
+Epoch 43/50
+ - 43s - loss: 0.5091 - acc: 0.8282 - val_loss: 0.3619 - val_acc: 0.8707
+
+Epoch 00043: val_acc improved from 0.87057 to 0.87066, saving model to model.h5
+Epoch 44/50
+ - 44s - loss: 0.5081 - acc: 0.8280 - val_loss: 0.3616 - val_acc: 0.8715
+
+Epoch 00044: val_acc improved from 0.87066 to 0.87148, saving model to model.h5
+Epoch 45/50
+ - 45s - loss: 0.5068 - acc: 0.8311 - val_loss: 0.3591 - val_acc: 0.8716
+
+Epoch 00045: val_acc improved from 0.87148 to 0.87160, saving model to model.h5
+Epoch 46/50
+ - 43s - loss: 0.4982 - acc: 0.8320 - val_loss: 0.3573 - val_acc: 0.8728
+
+Epoch 00046: val_acc improved from 0.87160 to 0.87275, saving model to model.h5
+Epoch 47/50
+ - 43s - loss: 0.5006 - acc: 0.8332 - val_loss: 0.3565 - val_acc: 0.8729
+
+Epoch 00047: val_acc improved from 0.87275 to 0.87290, saving model to model.h5
+Epoch 48/50
+ - 44s - loss: 0.4958 - acc: 0.8349 - val_loss: 0.3550 - val_acc: 0.8734
+
+Epoch 00048: val_acc improved from 0.87290 to 0.87340, saving model to model.h5
+Epoch 49/50
+ - 44s - loss: 0.4920 - acc: 0.8330 - val_loss: 0.3546 - val_acc: 0.8735
+
+Epoch 00049: val_acc improved from 0.87340 to 0.87352, saving model to model.h5
+Epoch 50/50
+ - 48s - loss: 0.4911 - acc: 0.8336 - val_loss: 0.3534 - val_acc: 0.8730
+
+Epoch 00050: val_acc did not improve
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv_layer1 (Conv2D)         (None, 28, 28, 32)        832
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 14, 14, 32)        0
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 14, 14, 32)        0
+_________________________________________________________________
+conv_layer2 (Conv2D)         (None, 14, 14, 64)        51264
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 7, 7, 64)          0
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 7, 7, 64)          0
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 3136)              0
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               401536
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 128)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 47)                6063
+=================================================================
+Total params: 459,695
+Trainable params: 459,695
+Non-trainable params: 0
+_________________________________________________________________
+Test loss: 0.3702146255184954
+Test accuracy: 0.8700462790637379
