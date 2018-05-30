@@ -1,0 +1,170 @@
+C:\Users\mohamed\Anaconda3\envs\tensorflow\python.exe "F:/FCIH/Level4/2nd Semester/pattern/Project/Final/CNN_model_bymerge.py"
+C:\Users\mohamed\Anaconda3\envs\tensorflow\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+Train on 488551 samples, validate on 209380 samples
+Epoch 1/50
+2018-05-30 00:34:59.982863: I T:\src\github\tensorflow\tensorflow\core\platform\cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2018-05-30 00:35:23.323204: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1344] Found device 0 with properties:
+name: GeForce 840M major: 5 minor: 0 memoryClockRate(GHz): 1.124
+pciBusID: 0000:03:00.0
+totalMemory: 4.00GiB freeMemory: 3.36GiB
+2018-05-30 00:35:23.328324: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-05-30 00:36:05.825876: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-05-30 00:36:05.826245: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:917]      0
+2018-05-30 00:36:05.826504: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:930] 0:   N
+2018-05-30 00:36:05.977572: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 3093 MB memory) -> physical GPU (device: 0, name: GeForce 840M, pci bus id: 0000:03:00.0, compute capability: 5.0)
+ - 397s - loss: 1.5441 - acc: 0.5715 - val_loss: 0.6189 - val_acc: 0.8048
+
+Epoch 00001: val_acc improved from -inf to 0.80483, saving model to model_bymerge.h5
+Epoch 2/50
+ - 280s - loss: 0.8081 - acc: 0.7480 - val_loss: 0.4636 - val_acc: 0.8461
+
+Epoch 00002: val_acc improved from 0.80483 to 0.84614, saving model to model_bymerge.h5
+Epoch 3/50
+ - 277s - loss: 0.6544 - acc: 0.7906 - val_loss: 0.4057 - val_acc: 0.8624
+
+Epoch 00003: val_acc improved from 0.84614 to 0.86244, saving model to model_bymerge.h5
+Epoch 4/50
+ - 292s - loss: 0.5795 - acc: 0.8120 - val_loss: 0.3727 - val_acc: 0.8715
+
+Epoch 00004: val_acc improved from 0.86244 to 0.87153, saving model to model_bymerge.h5
+Epoch 5/50
+ - 302s - loss: 0.5353 - acc: 0.8254 - val_loss: 0.3524 - val_acc: 0.8766
+
+Epoch 00005: val_acc improved from 0.87153 to 0.87664, saving model to model_bymerge.h5
+Epoch 6/50
+ - 293s - loss: 0.5059 - acc: 0.8336 - val_loss: 0.3412 - val_acc: 0.8797
+
+Epoch 00006: val_acc improved from 0.87664 to 0.87974, saving model to model_bymerge.h5
+Epoch 7/50
+ - 307s - loss: 0.4843 - acc: 0.8395 - val_loss: 0.3307 - val_acc: 0.8832
+
+Epoch 00007: val_acc improved from 0.87974 to 0.88316, saving model to model_bymerge.h5
+Epoch 8/50
+ - 278s - loss: 0.4664 - acc: 0.8442 - val_loss: 0.3229 - val_acc: 0.8849
+
+Epoch 00008: val_acc improved from 0.88316 to 0.88492, saving model to model_bymerge.h5
+Epoch 9/50
+ - 276s - loss: 0.4541 - acc: 0.8483 - val_loss: 0.3182 - val_acc: 0.8862
+
+Epoch 00009: val_acc improved from 0.88492 to 0.88625, saving model to model_bymerge.h5
+Epoch 10/50
+ - 275s - loss: 0.4426 - acc: 0.8512 - val_loss: 0.3101 - val_acc: 0.8883
+
+Epoch 00010: val_acc improved from 0.88625 to 0.88833, saving model to model_bymerge.h5
+Epoch 11/50
+ - 272s - loss: 0.4335 - acc: 0.8539 - val_loss: 0.3065 - val_acc: 0.8892
+
+Epoch 00011: val_acc improved from 0.88833 to 0.88923, saving model to model_bymerge.h5
+Epoch 12/50
+ - 270s - loss: 0.4273 - acc: 0.8558 - val_loss: 0.3024 - val_acc: 0.8909
+
+Epoch 00012: val_acc improved from 0.88923 to 0.89090, saving model to model_bymerge.h5
+Epoch 13/50
+ - 270s - loss: 0.4195 - acc: 0.8577 - val_loss: 0.3011 - val_acc: 0.8910
+
+Epoch 00013: val_acc improved from 0.89090 to 0.89097, saving model to model_bymerge.h5
+Epoch 14/50
+ - 269s - loss: 0.4141 - acc: 0.8595 - val_loss: 0.2984 - val_acc: 0.8916
+
+Epoch 00014: val_acc improved from 0.89097 to 0.89164, saving model to model_bymerge.h5
+Epoch 15/50
+ - 270s - loss: 0.4082 - acc: 0.8610 - val_loss: 0.2943 - val_acc: 0.8927
+
+Epoch 00015: val_acc improved from 0.89164 to 0.89266, saving model to model_bymerge.h5
+Epoch 16/50
+ - 269s - loss: 0.4029 - acc: 0.8627 - val_loss: 0.2925 - val_acc: 0.8935
+
+Epoch 00016: val_acc improved from 0.89266 to 0.89355, saving model to model_bymerge.h5
+Epoch 17/50
+ - 269s - loss: 0.4012 - acc: 0.8630 - val_loss: 0.2908 - val_acc: 0.8943
+
+Epoch 00017: val_acc improved from 0.89355 to 0.89429, saving model to model_bymerge.h5
+Epoch 18/50
+ - 269s - loss: 0.3958 - acc: 0.8644 - val_loss: 0.2886 - val_acc: 0.8944
+
+Epoch 00018: val_acc improved from 0.89429 to 0.89444, saving model to model_bymerge.h5
+Epoch 19/50
+ - 269s - loss: 0.3917 - acc: 0.8652 - val_loss: 0.2878 - val_acc: 0.8947
+
+Epoch 00019: val_acc improved from 0.89444 to 0.89472, saving model to model_bymerge.h5
+Epoch 20/50
+ - 269s - loss: 0.3888 - acc: 0.8661 - val_loss: 0.2868 - val_acc: 0.8950
+
+Epoch 00020: val_acc improved from 0.89472 to 0.89502, saving model to model_bymerge.h5
+Epoch 21/50
+ - 270s - loss: 0.3865 - acc: 0.8672 - val_loss: 0.2842 - val_acc: 0.8957
+
+Epoch 00021: val_acc improved from 0.89502 to 0.89572, saving model to model_bymerge.h5
+Epoch 22/50
+ - 286s - loss: 0.3843 - acc: 0.8681 - val_loss: 0.2843 - val_acc: 0.8955
+
+Epoch 00022: val_acc did not improve
+Epoch 23/50
+ - 287s - loss: 0.3811 - acc: 0.8690 - val_loss: 0.2830 - val_acc: 0.8962
+
+Epoch 00023: val_acc improved from 0.89572 to 0.89615, saving model to model_bymerge.h5
+Epoch 24/50
+ - 286s - loss: 0.3794 - acc: 0.8692 - val_loss: 0.2802 - val_acc: 0.8965
+
+Epoch 00024: val_acc improved from 0.89615 to 0.89655, saving model to model_bymerge.h5
+Epoch 25/50
+ - 276s - loss: 0.3767 - acc: 0.8696 - val_loss: 0.2810 - val_acc: 0.8966
+
+Epoch 00025: val_acc improved from 0.89655 to 0.89656, saving model to model_bymerge.h5
+Epoch 26/50
+ - 276s - loss: 0.3762 - acc: 0.8702 - val_loss: 0.2785 - val_acc: 0.8971
+
+Epoch 00026: val_acc improved from 0.89656 to 0.89712, saving model to model_bymerge.h5
+Epoch 27/50
+ - 275s - loss: 0.3734 - acc: 0.8712 - val_loss: 0.2776 - val_acc: 0.8977
+
+Epoch 00027: val_acc improved from 0.89712 to 0.89774, saving model to model_bymerge.h5
+Epoch 28/50
+ - 275s - loss: 0.3715 - acc: 0.8715 - val_loss: 0.2773 - val_acc: 0.8978
+
+Epoch 00028: val_acc improved from 0.89774 to 0.89776, saving model to model_bymerge.h5
+Epoch 29/50
+ - 273s - loss: 0.3706 - acc: 0.8715 - val_loss: 0.2756 - val_acc: 0.8983
+
+Epoch 00029: val_acc improved from 0.89776 to 0.89827, saving model to model_bymerge.h5
+Epoch 30/50
+ - 279s - loss: 0.3690 - acc: 0.8721 - val_loss: 0.2759 - val_acc: 0.8980
+
+Epoch 00030: val_acc did not improve
+Epoch 31/50
+ - 280s - loss: 0.3673 - acc: 0.8726 - val_loss: 0.2758 - val_acc: 0.8977
+
+Epoch 00031: val_acc did not improve
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv_layer1 (Conv2D)         (None, 28, 28, 32)        832
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 14, 14, 32)        0
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 14, 14, 32)        0
+_________________________________________________________________
+conv_layer2 (Conv2D)         (None, 14, 14, 64)        51264
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 7, 7, 64)          0
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 7, 7, 64)          0
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 3136)              0
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               401536
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 128)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 47)                6063
+=================================================================
+Total params: 459,695
+Trainable params: 459,695
+Non-trainable params: 0
+_________________________________________________________________
+Test loss: 0.2793751643939708
+Test accuracy: 0.8966747476831554
+
+Process finished with exit code 0
