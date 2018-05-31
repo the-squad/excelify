@@ -44,34 +44,32 @@ def preprocessing(im_bw):
 
 def characterSegmentation(thinning_img):
     #tinging_img=noise_clearing(tinging_img)
+    height, width = thinning_img.shape
+    arr = np.empty(width, dtype=np.int8)
+    # step1 White Pixel count
+    for colIndex in range(width):
+        whitePixels = 0
+        for rowIndex in range(height):
+            if thinning_img[rowIndex, colIndex] == 255:
+                whitePixels += 1
+        arr[colIndex] =  whitePixels if whitePixels<=1 else 2
 
-    arr = []
-    for i in range(len(thinning_img[0])):
-        whitePixel = 0
-        for j in range(len(thinning_img)):
-            if thinning_img[j, i] == 255:
-                whitePixel += 1
+    begin = 0
 
-        arr.append(2)
-
-        if whitePixel <= 1:
-            arr[i] = whitePixel
-    x = 0
-    for i in arr:
-        if i > 0:
+    for col in arr:
+        if col > 0:
             break
-        x += 1
-    y = len(arr)
-    for i in reversed(arr):
-        if i > 0:
+        begin += 1
+    last = len(arr)
+    for col in reversed(arr):
+        if col > 0:
             break
-        y -= 1
+        last -= 1
 
-    start, end, psc, threshold = 0, 0, [], 5
-    # print(arr)
-    # print(x)
-    psc.append(x)
-    for i in range(x + 1, y):
+    start, end, psc, threshold = 0, 0, [], 100
+
+    psc.append(begin)
+    for i in range(begin + 1, last):
         if not arr[i] == 2 and start == 0:
             start = i
         elif arr[i] == 2 and not start == 0:
@@ -83,17 +81,22 @@ def characterSegmentation(thinning_img):
                 for j in range(len(thinning_img)):
                     thinning_img[j, ss] = 200
             start, end = 0, 0
-    #cv2.imshow("blaadsadasd", thinning_img)
-    arr_img = []
-    height, width = thinning_img.shape
-    #print(psc)
+    cropedImage = []
+
     for i in range(0, len(psc) - 1):
-        arr_img.append(thinning_img[0:height, psc[i]:psc[i + 1]])
-    arr_img.append(thinning_img[0:height, psc[-1]:y])
+        cropedImage.append(thinning_img[0:height, psc[i]:psc[i + 1]])
+    cropedImage.append(thinning_img[0:height, psc[-1]:last])
     i = 0
-    for img in arr_img:
-        i += 1
-        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", img)
+    for img in cropedImage:
+        height,width= thinning_img.shape
+        result = []
+        if height > width:
+            result = np.zeros((height,height))
+            result[:thinning_img.shape[0], :thinning_img.shape[1]] = img
+        else:
+            result = np.zeros((width,width))
+            result[:thinning_img.shape[0], :thinning_img.shape[1]] = img
+        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", resizeimg(result,28,28))
 
 def colSegmentation(img):
 
@@ -200,6 +203,28 @@ def rowSegmentation(img):
                 cv2.imwrite("output\\rows\\" + str(x) + ".png", croppedImage)
                 colSegmentation(croppedImage)
 
+def resizeimg(input_img, w, h):
+    # print "Hello"
+    o_height = input_img.shape[0]
+    o_width = input_img.shape[1]
+    aspect_ratio = o_width / (o_height * 1.0)
+
+    if (aspect_ratio < 1.777):  # aspect ratio less than 16:9
+        # aspectRatio = o_width / (o_height*1.0)
+        height = h
+        width = int(height * aspect_ratio)
+        input_img = cv2.resize(input_img, (width, height))
+
+    elif (aspect_ratio > 1.777):  # aspect ratio more than 16:9
+
+        # aspectRatio = o_height / (o_width*1.0)
+        width = w
+        height = int(width / aspect_ratio)
+        input_img = cv2.resize(input_img, (width, height))
+
+    else:  # aspect ratio exactly 16:9
+        input_img = cv2.resize(input_img, (h, h))
+    return input_img
 
 def main():
     os.makedirs("output\\rows")
