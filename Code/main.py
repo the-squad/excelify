@@ -66,7 +66,7 @@ def characterSegmentation(thinning_img):
             break
         last -= 1
 
-    start, end, psc, threshold = 0, 0, [], 100
+    start, end, psc, threshold = 0, 0, [], 7
 
     psc.append(begin)
     for i in range(begin + 1, last):
@@ -78,8 +78,6 @@ def characterSegmentation(thinning_img):
             if end - start >= threshold or arr[start] == 0 or arr[end] == 0:
                 ss = math.floor((start + end) / 2)
                 psc.append(ss)
-                for j in range(len(thinning_img)):
-                    thinning_img[j, ss] = 200
             start, end = 0, 0
     cropedImage = []
 
@@ -88,16 +86,21 @@ def characterSegmentation(thinning_img):
     cropedImage.append(thinning_img[0:height, psc[-1]:last])
     i = 0
     for img in cropedImage:
-        height,width= thinning_img.shape
-        result = []
-        if height > width:
-            result = np.zeros((height,height))
-            result[:thinning_img.shape[0], :thinning_img.shape[1]] = img
-        else:
-            result = np.zeros((width,width))
-            result[:thinning_img.shape[0], :thinning_img.shape[1]] = img
-        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", resizeimg(result,28,28))
+        height,width= img.shape
+        # result = []
+        # if height > width:
+        #     img = np.pad(img, pad_width=round((height-width)/2), mode='constant')
+        #     result = np.zeros((height,height))
+        #     result[:img.shape[0], :img.shape[1]] = img
+        # else:
+        #     img = np.pad(img, pad_width=round((width - height) / 2), mode='constant')
+        #     result = np.zeros((width,width))
+        #     result[:img.shape[0], :img.shape[1]] = img
+        img = np.pad(img, pad_width=2, mode='constant')
+        kernel = np.ones((3, 3), np.uint8)
 
+        img_dilation = cv2.dilate(img, kernel, iterations=1)
+        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", cv2.bitwise_not(cv2.resize(img_dilation,(28,28),cv2.INTER_CUBIC)))
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
@@ -150,11 +153,13 @@ def wordSegmentaion(img2):
             croppedImage = img2[0:height, 0:cropPoints[i]]
             if len(croppedImage[0]) > 10:
                 cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+                characterSegmentation(croppedImage)
             #cv2.imshow(str(i) + ".png", croppedImage)
         else:  # anyWord
             croppedImage = img2[0: height, cropPoints[i - 1]:cropPoints[i]]
             if len(croppedImage[0]) > 10:
                 cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+                characterSegmentation(croppedImage)
             #cv2.imshow(str(i) + ".png", croppedImage)
 
     print(cropPoints)
@@ -162,11 +167,13 @@ def wordSegmentaion(img2):
     if len(cropPoints) == 0:
         #cv2.imshow(str(random.randint(1, 101)) + ".png", img2)
         cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", img2)
+        characterSegmentation(img2)
     else:
         croppedImage = img2[0:height, cropPoints[len(cropPoints) - 1]:width]  # lastWord
         #cv2.imshow(str(random.randint(1, 10000)) + ".png", croppedImage)
         if len(croppedImage[0]) > 10:
             cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
+            characterSegmentation(croppedImage)
 
     cv2.waitKey(0)
 
