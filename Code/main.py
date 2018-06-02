@@ -118,7 +118,7 @@ def colSegmentation(img):
             wordSegmentaion(crop)                               #Here
 
 
-def wordSegmentaion(img2):
+'''def wordSegmentaion(img2):
     height, width = img2.shape
     histogram = []
     start = []
@@ -166,6 +166,37 @@ def wordSegmentaion(img2):
             cv2.imwrite("output\\wordSegmentation\\" + str(random.randint(1, 10000)) + ".png", croppedImage)
 
     cv2.waitKey(0)
+'''
+def wordSegmentaion(img2):
+    # dilation
+    kernel = np.ones((5, 8), np.uint8)
+
+    img_dilation = cv2.dilate(img2, kernel, iterations=1)
+    #cv2.imshow('dilated',img_dilation)
+    #cv2.waitKey(0)
+
+    # find contours
+    im2, ctrs, hier = cv2.findContours(img_dilation.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # sort contours
+    sorted_ctrs = sorted(ctrs, key=lambda ctr: cv2.boundingRect(ctr)[0])
+    print(len(sorted_ctrs))
+    for i, ctr in enumerate(sorted_ctrs):
+        # Get bounding box
+        x, y, w, h = cv2.boundingRect(ctr)
+
+        # Getting ROI
+        roi = img2[y:y + h, x:x + w]
+
+        # show ROI
+
+        height = roi.shape[0]
+        width = roi.shape[1]
+        if(height>10 and width>5):
+            cv2.imshow('segment no:' + str(i), roi)
+            cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi)
+            cv2.rectangle(img2, (x, y), (x + w, y + h), (90, 0, 255), 2)
+            cv2.waitKey(0)
 
 def rowSegmentation(img):
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
