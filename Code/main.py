@@ -5,6 +5,7 @@ import numpy as np
 import os
 import operator
 import thinning as p
+from keras.models import load_model
 MIN_CONTOUR_AREA = 100
 import random
 RESIZED_IMAGE_WIDTH = 500
@@ -100,7 +101,9 @@ def characterSegmentation(thinning_img):
         kernel = np.ones((3, 3), np.uint8)
 
         img_dilation = cv2.dilate(img, kernel, iterations=1)
-        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png", cv2.bitwise_not(cv2.resize(img_dilation,(28,28),cv2.INTER_CUBIC)))
+        charimage=cv2.bitwise_not(cv2.resize(img_dilation,(28,28),cv2.INTER_CUBIC))
+        predictCharacter(charimage)
+        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png",charimage)
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
@@ -203,9 +206,10 @@ def wordSegmentaion(img2):
         height = roi.shape[0]
         width = roi.shape[1]
         if(height>10 and width>5):
-            cv2.imshow('segment no:' + str(i), roi)
+            #cv2.imshow('segment no:' + str(i), roi)
             cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi)
             cv2.rectangle(img2, (x, y), (x + w, y + h), (90, 0, 255), 2)
+            #characterSegmentation(roi)
             cv2.waitKey(0)
 
 def rowSegmentation(img):
@@ -264,6 +268,35 @@ def resizeimg(input_img, w, h):
         input_img = cv2.resize(input_img, (h, h))
     return input_img
 
+
+
+
+def load_char_mappings(mapping_path):
+    """
+    load EMNIST character mappings. This maps a label to the correspondent byte value of the given character
+    return: the dictionary of label mappings
+    """
+    mappings = {}
+    with open(mapping_path) as f:
+        for line in f:
+            (key, val) = line.split()
+            mappings[int(key)] = int(val)
+
+    return mappings
+
+
+def predictCharacter(image):
+    img = cv2.bitwise_not(image)
+    mappings = load_char_mappings("Model//emnist-balanced-mapping.txt")
+    model = load_model('Model//model.h5')
+    img = img.reshape(1, 28, 28, 1)
+    img = img.astype('float64')
+    y_pred_int = model.predict_classes(img)
+    print(chr(mappings.get(y_pred_int[0])))
+
+
+
+
 def main():
     os.makedirs("output\\rows")
     os.makedirs("output\\cols")
@@ -271,6 +304,7 @@ def main():
     os.makedirs("output\\words-result")
     img = cv2.imread("Tables-examples\\table.png")
     rowSegmentation(img)
+    #wordSegmentaion(img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
