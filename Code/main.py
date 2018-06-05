@@ -107,17 +107,29 @@ def characterSegmentation(thinning_img):
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
+    # cv2.imshow('lol', im_bw)
+    cv2.imwrite(str(counter())+'.png',im_bw)
+    # cv2.imshow('lol2', img)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     Boundries = []
 
     height, width = im_bw.shape
 
-    for i in range(len(im_bw[0])):
+    for i in range(len(im_bw[0])):#width(no.of columns)
         blackPixel = 0
-        for j in range(len(im_bw)):
-            if im_bw[j, i] == 255 or (i < len(im_bw[0])-1 and im_bw[j, i + 1] == 255) or (i != 0 and im_bw[j, i - 1] == 255 ):
+        current_cell= i
+        for j in range(len(im_bw)):#height(no.of rows in column)
+            if im_bw[j, current_cell] == 255:
                 blackPixel += 1
+            elif (current_cell < len(im_bw[0])-1 and im_bw[j, current_cell + 1] == 255):
+                blackPixel += 1
+                current_cell+=1
+            elif (current_cell != 0 and im_bw[j, current_cell - 1] == 255 ):
+                blackPixel += 1
+                current_cell-=1
 
-        if blackPixel >= int(height * 3/4):
+        if blackPixel >= round(height * 0.65):
             Boundries.append(i)
     for i in range(0, len(Boundries) - 1):
         crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
@@ -182,7 +194,7 @@ def colSegmentation(img):
 '''
 def wordSegmentaion(img2):
     # dilation
-    kernel = np.ones((5, 8), np.uint8)
+    kernel = np.ones((50, 50), np.uint8)
 
     img_dilation = cv2.dilate(img2, kernel, iterations=1)
     #cv2.imshow('dilated',img_dilation)
@@ -302,7 +314,7 @@ def main():
     os.makedirs("output\\cols")
     os.makedirs("output\\wordSegmentation")
     os.makedirs("output\\words-result")
-    img = cv2.imread("Tables-examples\\table.png")
+    img = cv2.imread("C:\\Users\\mohamed\\Downloads\\table4.jpg")
     rowSegmentation(img)
     #wordSegmentaion(img)
     cv2.waitKey(0)
