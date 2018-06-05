@@ -108,7 +108,7 @@ def colSegmentation(img):
 
     im_bw=preprocessing(img)
     # cv2.imshow('lol', im_bw)
-    cv2.imwrite(str(counter())+'.png',im_bw)
+    #cv2.imwrite(str(counter())+'.png',im_bw)
     # cv2.imshow('lol2', img)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
@@ -314,7 +314,7 @@ def main():
     os.makedirs("output\\cols")
     os.makedirs("output\\wordSegmentation")
     os.makedirs("output\\words-result")
-    img = cv2.imread("C:\\Users\\mohamed\\Downloads\\table4.jpg")
+    img = cv2.imread("Tables-examples\\table10.jpg")
     rowSegmentation(img)
     #wordSegmentaion(img)
     cv2.waitKey(0)
