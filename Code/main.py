@@ -43,6 +43,19 @@ def preprocessing(im_bw):
     im_bw = p.guo_hall_thinning(im_bw)
     return im_bw
 
+def original_preprocessing(img):
+    w = 0
+    b = 0
+    for i in range(len(img)):
+        for j in range(len(img[0])):
+            if img[i, j] == 0:
+                b += 1
+            else:
+                w += 1
+    if (w > b):
+        im_bw = cv2.bitwise_not(img)
+    return im_bw
+
 def characterSegmentation(thinning_img):
     #tinging_img=noise_clearing(tinging_img)
     height, width = thinning_img.shape
@@ -107,15 +120,18 @@ def characterSegmentation(thinning_img):
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
+    original_img_bw = original_preprocessing(img)
     # cv2.imshow('lol', im_bw)
     #cv2.imwrite(str(counter())+'.png',im_bw)
     # cv2.imshow('lol2', img)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
     Boundries = []
-
+    original_boundaries = []
     height, width = im_bw.shape
+    original_height, original_width = original_img_bw.shape
 
+    #for thinned image
     for i in range(len(im_bw[0])):#width(no.of columns)
         blackPixel = 0
         current_cell= i
@@ -131,12 +147,39 @@ def colSegmentation(img):
 
         if blackPixel >= round(height * .90):
             Boundries.append(i)
+
+    #for original image
+    for i in range(len(original_img_bw[0])):#width(no.of columns)
+        blackPixel = 0
+        current_cell= i
+        for j in range(len(original_img_bw)):#height(no.of rows in column)
+            if original_img_bw[j, current_cell] == 255:
+                blackPixel += 1
+            elif (current_cell < len(original_img_bw[0])-1 and original_img_bw[j, current_cell + 1] == 255):
+                blackPixel += 1
+                current_cell+=1
+            elif (current_cell != 0 and original_img_bw[j, current_cell - 1] == 255 ):
+                blackPixel += 1
+                current_cell-=1
+
+        if blackPixel >= round(height * .90):
+            original_boundaries.append(i)
+
+    #for thinned image
     for i in range(0, len(Boundries) - 1):
         crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
         img = str(counter())
         if len(crop[0]) > 10 and len(crop) > 10:
             cv2.imwrite("output\\cols\\" + img + ".png", crop)
-            wordSegmentaion(crop)                               #Here
+            wordSegmentaion(crop)
+
+    #for original_image
+    for i in range(0, len(original_boundaries) - 1):
+        original_crop = original_img_bw[0 + 4:original_height - 3, original_boundaries[i] + 4:original_boundaries[i + 1]]
+        img = str(counter())
+        if len(original_crop[0]) > 10 and len(original_crop) > 10:
+            cv2.imwrite("output\\OriginalCols\\" + img + ".png", original_crop)
+            wordSegmentaion(original_crop)
 
 
 '''def wordSegmentaion(img2):
@@ -310,11 +353,12 @@ def predictCharacter(image):
 
 
 def main():
-    #os.makedirs("output\\rows")
-    # os.makedirs("output\\cols")
-    # os.makedirs("output\\wordSegmentation")
-    # os.makedirs("output\\words-result")
-    img = cv2.imread("Tables-examples\\table8.jpg")
+    os.makedirs("output\\rows")
+    os.makedirs("output\\cols")
+    os.makedirs("output\\wordSegmentation")
+    os.makedirs("output\\words-result")
+    os.makedirs("output\\OriginalCols")
+    img = cv2.imread("Tables-examples\\table4.jpg")
     rowSegmentation(img)
     #wordSegmentaion(img)
     cv2.waitKey(0)
