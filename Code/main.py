@@ -129,7 +129,7 @@ def colSegmentation(img):
                 blackPixel += 1
                 current_cell-=1
 
-        if blackPixel >= round(height * 0.65):
+        if blackPixel >= round(height * .90):
             Boundries.append(i)
     for i in range(0, len(Boundries) - 1):
         crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
@@ -194,7 +194,7 @@ def colSegmentation(img):
 '''
 def wordSegmentaion(img2):
     # dilation
-    kernel = np.ones((50, 50), np.uint8)
+    kernel = np.ones((20, 40), np.uint8)
 
     img_dilation = cv2.dilate(img2, kernel, iterations=1)
     #cv2.imshow('dilated',img_dilation)
@@ -205,7 +205,7 @@ def wordSegmentaion(img2):
 
     # sort contours
     sorted_ctrs = sorted(ctrs, key=lambda ctr: cv2.boundingRect(ctr)[0])
-    print(len(sorted_ctrs))
+    #print(len(sorted_ctrs))
     for i, ctr in enumerate(sorted_ctrs):
         # Get bounding box
         x, y, w, h = cv2.boundingRect(ctr)
@@ -217,7 +217,7 @@ def wordSegmentaion(img2):
 
         height = roi.shape[0]
         width = roi.shape[1]
-        if(height>10 and width>5):
+        if(height>40 and width>40):
             #cv2.imshow('segment no:' + str(i), roi)
             cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi)
             cv2.rectangle(img2, (x, y), (x + w, y + h), (90, 0, 255), 2)
@@ -310,11 +310,11 @@ def predictCharacter(image):
 
 
 def main():
-    os.makedirs("output\\rows")
-    os.makedirs("output\\cols")
-    os.makedirs("output\\wordSegmentation")
-    os.makedirs("output\\words-result")
-    img = cv2.imread("Tables-examples\\table10.jpg")
+    #os.makedirs("output\\rows")
+    # os.makedirs("output\\cols")
+    # os.makedirs("output\\wordSegmentation")
+    # os.makedirs("output\\words-result")
+    img = cv2.imread("Tables-examples\\table8.jpg")
     rowSegmentation(img)
     #wordSegmentaion(img)
     cv2.waitKey(0)
