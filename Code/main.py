@@ -56,7 +56,9 @@ def original_preprocessing(img):
         im_bw = cv2.bitwise_not(img)
     return im_bw
 
-def characterSegmentation(thinning_img):
+def characterSegmentation(thinning_img,originalImage):
+
+
     #tinging_img=noise_clearing(tinging_img)
     height, width = thinning_img.shape
     arr = np.empty(width, dtype=np.int8)
@@ -92,12 +94,20 @@ def characterSegmentation(thinning_img):
             if end - start >= threshold or arr[start] == 0 or arr[end] == 0:
                 ss = math.floor((start + end) / 2)
                 psc.append(ss)
+                for j in range(len(thinning_img)):
+                    thinning_img[j, ss] = 200
             start, end = 0, 0
+
+    cv2.imshow("asdasd",thinning_img)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+
     cropedImage = []
 
     for i in range(0, len(psc) - 1):
-        cropedImage.append(thinning_img[0:height, psc[i]:psc[i + 1]])
-    cropedImage.append(thinning_img[0:height, psc[-1]:last])
+        cropedImage.append(originalImage[0:height, psc[i]:psc[i + 1]])
+    cropedImage.append(originalImage[0:height, psc[-1]:last])
     i = 0
     for img in cropedImage:
         height,width= img.shape
@@ -111,12 +121,14 @@ def characterSegmentation(thinning_img):
         #     result = np.zeros((width,width))
         #     result[:img.shape[0], :img.shape[1]] = img
         img = np.pad(img, pad_width=2, mode='constant')
-        kernel = np.ones((3, 3), np.uint8)
 
-        img_dilation = cv2.dilate(img, kernel, iterations=1)
-        charimage=cv2.bitwise_not(cv2.resize(img_dilation,(28,28),cv2.INTER_CUBIC))
-        predictCharacter(charimage)
-        cv2.imwrite("output\\words-result\\" + str(counter()) + ".png",charimage)
+        #kernel = np.ones((3, 3), np.uint8)
+
+        #img_dilation = cv2.dilate(img, kernel, iterations=1)
+
+        charimage=cv2.bitwise_not(cv2.resize(img,(28,28),cv2.INTER_CUBIC))
+        #predictCharacter(charimage)
+        cv2.imwrite("output\\characterSegmentation\\" + str(counter()) + ".png",charimage)
 def colSegmentation(img):
 
     im_bw=preprocessing(img)
@@ -148,38 +160,15 @@ def colSegmentation(img):
         if blackPixel >= round(height * .90):
             Boundries.append(i)
 
-    #for original image
-    for i in range(len(original_img_bw[0])):#width(no.of columns)
-        blackPixel = 0
-        current_cell= i
-        for j in range(len(original_img_bw)):#height(no.of rows in column)
-            if original_img_bw[j, current_cell] == 255:
-                blackPixel += 1
-            elif (current_cell < len(original_img_bw[0])-1 and original_img_bw[j, current_cell + 1] == 255):
-                blackPixel += 1
-                current_cell+=1
-            elif (current_cell != 0 and original_img_bw[j, current_cell - 1] == 255 ):
-                blackPixel += 1
-                current_cell-=1
-
-        if blackPixel >= round(height * .90):
-            original_boundaries.append(i)
-
     #for thinned image
     for i in range(0, len(Boundries) - 1):
         crop = im_bw[0 + 4:height - 3, Boundries[i] + 4:Boundries[i + 1]]
+        original_crop = original_img_bw[0 + 4:original_height - 3,Boundries[i] + 4:Boundries[i + 1]]
         img = str(counter())
         if len(crop[0]) > 10 and len(crop) > 10:
-            cv2.imwrite("output\\cols\\" + img + ".png", crop)
-            wordSegmentaion(crop)
+            cv2.imwrite("output\\cols\\" + img + ".png", original_crop)
+            wordSegmentaion(crop,original_crop)
 
-    #for original_image
-    for i in range(0, len(original_boundaries) - 1):
-        original_crop = original_img_bw[0 + 4:original_height - 3, original_boundaries[i] + 4:original_boundaries[i + 1]]
-        img = str(counter())
-        if len(original_crop[0]) > 10 and len(original_crop) > 10:
-            cv2.imwrite("output\\OriginalCols\\" + img + ".png", original_crop)
-            wordSegmentaion(original_crop)
 
 
 '''def wordSegmentaion(img2):
@@ -235,11 +224,11 @@ def colSegmentation(img):
 
     cv2.waitKey(0)
 '''
-def wordSegmentaion(img2):
+def wordSegmentaion(thiningImage,originalImage):
     # dilation
     kernel = np.ones((20, 40), np.uint8)
 
-    img_dilation = cv2.dilate(img2, kernel, iterations=1)
+    img_dilation = cv2.dilate(thiningImage, kernel, iterations=1)
     #cv2.imshow('dilated',img_dilation)
     #cv2.waitKey(0)
 
@@ -254,17 +243,19 @@ def wordSegmentaion(img2):
         x, y, w, h = cv2.boundingRect(ctr)
 
         # Getting ROI
-        roi = img2[y:y + h, x:x + w]
+        roi_original = originalImage[y:y + h, x:x + w]
+        roi2_thining = thiningImage[y:y + h, x:x + w]
 
         # show ROI
 
-        height = roi.shape[0]
-        width = roi.shape[1]
+        height = roi_original.shape[0]
+        width = roi_original.shape[1]
         if(height>40 and width>40):
             #cv2.imshow('segment no:' + str(i), roi)
-            cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi)
-            cv2.rectangle(img2, (x, y), (x + w, y + h), (90, 0, 255), 2)
-            #characterSegmentation(roi)
+            cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi_original)
+            #cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi2)
+            cv2.rectangle(thiningImage, (x, y), (x + w, y + h), (90, 0, 255), 2)
+            characterSegmentation(roi2_thining,roi_original)
             cv2.waitKey(0)
 
 def rowSegmentation(img):
@@ -347,18 +338,18 @@ def predictCharacter(image):
     img = img.reshape(1, 28, 28, 1)
     img = img.astype('float64')
     y_pred_int = model.predict_classes(img)
-    print(chr(mappings.get(y_pred_int[0])))
+    #print(chr(mappings.get(y_pred_int[0])))
 
 
 
 
 def main():
-    os.makedirs("output\\rows")
-    os.makedirs("output\\cols")
-    os.makedirs("output\\wordSegmentation")
-    os.makedirs("output\\words-result")
-    os.makedirs("output\\OriginalCols")
-    img = cv2.imread("Tables-examples\\table4.jpg")
+    # os.makedirs("output\\rows")
+    # os.makedirs("output\\cols")
+    # os.makedirs("output\\wordSegmentation")
+    # os.makedirs("output\\words-result")
+    # os.makedirs("output\\OriginalCols")
+    img = cv2.imread("Tables-examples\\table10.jpg")
     rowSegmentation(img)
     #wordSegmentaion(img)
     cv2.waitKey(0)
