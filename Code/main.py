@@ -332,13 +332,17 @@ def load_char_mappings(mapping_path):
 
 
 def predictCharacter(image):
-    img = cv2.bitwise_not(image)
+    cv2.imshow("asd",image)
+    cv2.waitKey()
+    img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    (thresh, img) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    img = cv2.bitwise_not(img)
     mappings = load_char_mappings("Model//emnist-balanced-mapping.txt")
     model = load_model('Model//model.h5')
     img = img.reshape(1, 28, 28, 1)
     img = img.astype('float64')
     y_pred_int = model.predict_classes(img)
-    #print(chr(mappings.get(y_pred_int[0])))
+    print(chr(mappings.get(y_pred_int[0])))
 
 
 
@@ -349,11 +353,13 @@ def main():
     # os.makedirs("output\\wordSegmentation")
     # os.makedirs("output\\words-result")
     # os.makedirs("output\\OriginalCols")
-    img = cv2.imread("Tables-examples\\table10.jpg")
-    rowSegmentation(img)
+    # img = cv2.imread("Tables-examples\\table10.jpg")
+    # rowSegmentation(img)
+    img = cv2.imread("C:\\Users\\mohamed\\Downloads\\87.png")
+    predictCharacter(img)
     #wordSegmentaion(img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     return
 
 
