@@ -16,6 +16,7 @@ const HeaderContainer = Flex.extend`
 const Logo = styled(Text)`
   font-family: 'Roboto Slab';
   font-weight: 600;
+  color: ${COLORS_VALUES[COLORS.BLUE]};
 `;
 
 const Header = props => (
@@ -23,7 +24,7 @@ const Header = props => (
     <Logo tag="h1" key="logo" type={FONT_TYPES.TITLE} m="0">
       Cerberus
     </Logo>
-    <Button primary={false}>Upload a new image</Button>
+    <Button>Convert Image</Button>
   </HeaderContainer>
 );
 

@@ -14,7 +14,7 @@ exports[`Header should render 1`] = `
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  color: blue;
+  color: white;
   font-weight: 500;
   font-size: 15px;
   line-height: 24px;
@@ -38,13 +38,13 @@ exports[`Header should render 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
   position: relative;
   min-width: 120px;
-  background-color: transparent;
+  background-color: blue;
 }
 
 .c3:not(:disabled) {
@@ -72,6 +72,7 @@ exports[`Header should render 1`] = `
 .c1 {
   font-family: 'Roboto Slab';
   font-weight: 600;
+  color: #0070E0;
 }
 
 @media screen and (min-width:40em) {
@@ -131,7 +132,7 @@ exports[`Header should render 1`] = `
   >
     <span
       class="c4"
-      color="blue"
+      color="white"
       font-size="15px,15px,14px,14px"
       font-weight="500"
       lineheight="24px"
@@ -140,7 +141,7 @@ exports[`Header should render 1`] = `
       width="max-content"
       zindex="1"
     >
-      Upload a new image
+      Convert Image
     </span>
   </button>
 </div>
