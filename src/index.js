@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 WebFont.load({
   google: {
-    families: ['Roboto'],
+    families: ['Roboto', 'Roboto Slab'],
   },
 });
 
