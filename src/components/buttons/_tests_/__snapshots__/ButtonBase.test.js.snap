@@ -17,7 +17,7 @@ exports[`ButtonBase should render 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;

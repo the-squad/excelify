@@ -17,7 +17,7 @@ exports[`Button should render 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -97,7 +97,7 @@ exports[`Button should render color correctly with outline type 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -177,7 +177,7 @@ exports[`Button should render color correctly with primary type 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -257,7 +257,7 @@ exports[`Button should render disabled color correctly with outline type 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -338,7 +338,7 @@ exports[`Button should render disabled color correctly with primary type 1`] = `
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -419,7 +419,7 @@ exports[`Button should render spinner when isLoading = true with outline type 1`
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;
@@ -532,7 +532,7 @@ exports[`Button should render spinner when isLoading = true with primary type 1`
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 32px;
+  padding: 0 24px;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   outline: none;

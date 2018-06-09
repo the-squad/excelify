@@ -10,7 +10,7 @@ const ButtonBase = styled.button`
   border: none;
   border-radius: 4px;
   height: 36px;
-  padding: 0 ${Space[8]}px;
+  padding: 0 ${Space[6]}px;
   transition: all 200ms ease-out;
   outline: none;
   position: relative;
