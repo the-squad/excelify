@@ -1,0 +1,620 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c1 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+>
+  <span
+    class="c1"
+    color="white"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render color correctly with outline type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: transparent;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c1 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #1b2733;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+>
+  <span
+    class="c1"
+    color="text"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render color correctly with primary type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c1 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+>
+  <span
+    class="c1"
+    color="white"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render disabled color correctly with outline type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: transparent;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c1 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #1b2733;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+  disabled=""
+>
+  <span
+    class="c1"
+    color="text"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render disabled color correctly with primary type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: #637282;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c1 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #1b2733;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+@media screen and (min-width:400px) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+  disabled=""
+>
+  <span
+    class="c1"
+    color="text"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render spinner when isLoading = true with outline type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: transparent;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c2 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #1b2733;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+.c1 {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.c1 .path {
+  stroke: #1b2733;
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+}
+
+@media screen and (min-width:400px) {
+  .c2 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c2 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c2 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+  disabled=""
+>
+  <svg
+    class="c1"
+    color="text"
+    radius="16"
+    viewBox="0 0 50 50"
+  >
+    <circle
+      class="path"
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+      stroke-width="4"
+    >
+      
+    </circle>
+  </svg>
+  <span
+    class="c2"
+    color="text"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
+
+exports[`Button should render spinner when isLoading = true with primary type 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 32px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: #637282;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+.c2 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #1b2733;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+.c1 {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.c1 .path {
+  stroke: #1b2733;
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+}
+
+@media screen and (min-width:400px) {
+  .c2 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:576px) {
+  .c2 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:786px) {
+  .c2 {
+    font-size: 14px;
+  }
+}
+
+<button
+  class="c0"
+  disabled=""
+>
+  <svg
+    class="c1"
+    color="text"
+    radius="16"
+    viewBox="0 0 50 50"
+  >
+    <circle
+      class="path"
+      cx="25"
+      cy="25"
+      fill="none"
+      r="20"
+      stroke-width="4"
+    >
+      
+    </circle>
+  </svg>
+  <span
+    class="c2"
+    color="text"
+    font-size="15px,15px,14px,14px"
+    font-weight="500"
+    lineheight="24px"
+    tag="span"
+    type="body"
+    width="max-content"
+    zindex="1"
+  >
+    Button
+  </span>
+</button>
+`;
