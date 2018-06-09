@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^16.4.0",
+    "react-app-rewire-hot-loader": "^1.0.1",
+    "react-app-rewired": "^1.5.2",
     "react-dom": "^16.4.0",
+    "react-hot-loader": "^4.3.1",
     "react-scripts": "1.1.4",
     "styled-components": "^3.3.2",
     "styled-system": "^2.2.5"
@@ -21,6 +24,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.74.0",
     "prettier": "^1.13.5"
   },
   "scripts": {
