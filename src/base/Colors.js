@@ -40,7 +40,7 @@ const COLORS_VALUES = {
   [COLORS.DISABLED]: baseColors.grey,
   [COLORS.TEXT]: baseColors.black,
   [COLORS.HELP_TEXT]: baseColors.grey,
-  [COLORS.BORDER]: baseColors.grey,
+  [COLORS.BORDER]: baseColors.light,
   [COLORS.HEADER]: baseColors.primary,
   [COLORS.WHITE]: baseColors.white,
   [COLORS.SEPARATOR]: baseColors.grey,
