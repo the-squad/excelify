@@ -3,14 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-jest": "^23.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-enzyme": "^6.0.1",
+    "jest-styled-components": "^5.0.1",
+    "jsdom-global": "^3.0.2",
+    "prop-types": "^15.6.1",
+    "ramda": "^0.25.0",
     "react": "^16.4.0",
     "react-app-rewire-hot-loader": "^1.0.1",
     "react-app-rewired": "^1.5.2",
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.3.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
     "styled-components": "^3.3.2",
-    "styled-system": "^2.2.5"
+    "styled-system": "^2.2.5",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -30,7 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --silent",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint --fix ./src/*"
   }
