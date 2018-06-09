@@ -16,7 +16,7 @@ class Button extends Component {
   };
 
   static defaultProps = {
-    color: COLORS.PRIMARY_RED,
+    color: COLORS.BLUE,
     primary: true,
     disabled: false,
     isLoading: false,
