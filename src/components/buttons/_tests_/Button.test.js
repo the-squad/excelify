@@ -23,14 +23,14 @@ describe('Button', () => {
     const wrapper = shallow(<Button>Button</Button>);
     expect(wrapper.instance().getButtonColors()).toEqual({
       textColor: COLORS.WHITE,
-      buttonBackground: COLORS.PRIMARY_RED,
+      buttonBackground: COLORS.BLUE,
     });
   });
 
   it('should render color correctly with primary type', () => {
     const tree = render(
       <ThemeProvider theme={theme}>
-        <Button color={COLORS.PRIMARY_BLUE}>Button</Button>
+        <Button color={COLORS.BLUE}>Button</Button>
       </ThemeProvider>,
     );
     expect(tree).toMatchSnapshot();
@@ -38,14 +38,14 @@ describe('Button', () => {
     const wrapper = shallow(<Button color={COLORS.PRIMARY_BLUE}>Button</Button>);
     expect(wrapper.instance().getButtonColors()).toEqual({
       textColor: COLORS.WHITE,
-      buttonBackground: COLORS.PRIMARY_BLUE,
+      buttonBackground: COLORS.BLUE,
     });
   });
 
   it('should render color correctly with outline type', () => {
     const tree = render(
       <ThemeProvider theme={theme}>
-        <Button primary={false} color={COLORS.PRIMARY_BLUE}>
+        <Button primary={false} color={COLORS.BLUE}>
           Button
         </Button>
       </ThemeProvider>,
@@ -53,12 +53,12 @@ describe('Button', () => {
     expect(tree).toMatchSnapshot();
 
     const wrapper = shallow(
-      <Button primary={false} color={COLORS.PRIMARY_BLUE}>
+      <Button primary={false} color={COLORS.BLUE}>
         Button
       </Button>,
     );
     expect(wrapper.instance().getButtonColors()).toEqual({
-      textColor: COLORS.PRIMARY_BLUE,
+      textColor: COLORS.BLUE,
       buttonBackground: COLORS.TRANSPARENT,
     });
   });
@@ -66,7 +66,7 @@ describe('Button', () => {
   it('should render disabled color correctly with primary type', () => {
     const tree = render(
       <ThemeProvider theme={theme}>
-        <Button disabled color={COLORS.PRIMARY_BLUE}>
+        <Button disabled color={COLORS.BLUE}>
           Button
         </Button>
       </ThemeProvider>,
@@ -74,7 +74,7 @@ describe('Button', () => {
     expect(tree).toMatchSnapshot();
 
     const wrapper = shallow(
-      <Button disabled color={COLORS.PRIMARY_BLUE}>
+      <Button disabled color={COLORS.BLUE}>
         Button
       </Button>,
     );
