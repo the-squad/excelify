@@ -25,7 +25,7 @@ class IconsStore {
       instance = new IconsStore();
     }
 
-    const iconName = `ic_${name}`;
+    const iconName = name;
     let requestedIcon = instance.icons.icons.filter(icon => icon.properties.name === iconName);
     if (requestedIcon.length === 0) {
       requestedIcon = {};
