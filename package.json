@@ -7,7 +7,6 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "^0.74.0",
-    "flow-typed": "^2.4.0",
     "grid-styled": "^4.1.0",
     "jest-enzyme": "^6.0.1",
     "jest-styled-components": "^5.0.1",
@@ -48,6 +47,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --silent",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint --fix ./src/*"
+    "lint": "./node_modules/.bin/eslint --fix ./src/*",
+    "flow": "flow"
   }
 }
