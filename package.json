@@ -6,6 +6,8 @@
     "babel-jest": "^23.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "flow-bin": "^0.74.0",
+    "flow-typed": "^2.4.0",
     "grid-styled": "^4.1.0",
     "jest-enzyme": "^6.0.1",
     "jest-styled-components": "^5.0.1",
@@ -39,7 +41,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "flow-bin": "^0.74.0",
     "prettier": "^1.13.5"
   },
   "scripts": {
