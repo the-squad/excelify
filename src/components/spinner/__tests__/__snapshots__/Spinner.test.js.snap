@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner should render 1`] = `
+.c0 {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+  width: 40px;
+  height: 40px;
+}
+
+.c0 .path {
+  stroke: #06BEE1;
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+}
+
+<svg
+  class="c0"
+  radius="40"
+  viewBox="0 0 50 50"
+>
+  <circle
+    class="path"
+    cx="25"
+    cy="25"
+    fill="none"
+    r="20"
+    stroke-width="4"
+  >
+    
+  </circle>
+</svg>
+`;
+
+exports[`Spinner should render color correctly 1`] = `
+.c0 {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+  width: 40px;
+  height: 40px;
+}
+
+.c0 .path {
+  stroke: #06BEE1;
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+}
+
+<svg
+  class="c0"
+  radius="40"
+  viewBox="0 0 50 50"
+>
+  <circle
+    class="path"
+    cx="25"
+    cy="25"
+    fill="none"
+    r="20"
+    stroke-width="4"
+  >
+    
+  </circle>
+</svg>
+`;
+
+exports[`Spinner should render radius correctly 1`] = `
+.c0 {
+  -webkit-animation: cZxgpV 2s linear infinite;
+  animation: cZxgpV 2s linear infinite;
+  width: 60px;
+  height: 60px;
+}
+
+.c0 .path {
+  stroke: #06BEE1;
+  stroke-linecap: round;
+  -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
+  animation: kuSBtA 1.5s ease-in-out infinite;
+}
+
+<svg
+  class="c0"
+  radius="60"
+  viewBox="0 0 50 50"
+>
+  <circle
+    class="path"
+    cx="25"
+    cy="25"
+    fill="none"
+    r="20"
+    stroke-width="4"
+  >
+    
+  </circle>
+</svg>
+`;

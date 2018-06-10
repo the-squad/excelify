@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonBase should render 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 24px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+}
+
+.c0:not(:disabled) {
+  cursor: pointer;
+}
+
+<button
+  class="c0"
+>
+  Button
+</button>
+`;

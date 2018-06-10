@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render 1`] = `
+.c2 {
+  margin: 0;
+  color: text;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 24px;
+  font-display: fallback;
+}
+
+.c4 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  z-index: 1;
+  font-display: fallback;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 24px;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  outline: none;
+  position: relative;
+  min-width: 120px;
+  background-color: blue;
+}
+
+.c3:not(:disabled) {
+  cursor: pointer;
+}
+
+.c0 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 8px 32px;
+}
+
+.c1 {
+  font-family: 'Roboto Slab';
+  font-weight: 600;
+  color: #0070E0;
+}
+
+@media screen and (min-width:40em) {
+  .c2 {
+    font-size: 21px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c4 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c4 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c4 {
+    font-size: 14px;
+  }
+}
+
+<div
+  class="c0"
+>
+  <h1
+    class="c1 c2"
+    color="text"
+    font-size="21px,21px,20px,20px"
+    font-weight="500"
+    lineheight="24px"
+    m="0"
+    tag="h1"
+    type="title"
+  >
+    Cerberus
+  </h1>
+  <button
+    class="c3"
+    color="blue"
+  >
+    <span
+      class="c4"
+      color="white"
+      font-size="15px,15px,14px,14px"
+      font-weight="500"
+      lineheight="24px"
+      tag="span"
+      type="body"
+      width="max-content"
+      zindex="1"
+    >
+      Convert Image
+    </span>
+  </button>
+</div>
+`;

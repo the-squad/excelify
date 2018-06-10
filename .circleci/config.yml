@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/graduation-project
+    docker:
+      - image: circleci/node:7.10
+    steps:
+      - checkout
+      - run:
+          name: install yarn
+          command: 'sudo npm install -g yarn'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: yarn test tests --ci --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - run:
+          name: flow
+          command: yarn flow
+      - run:
+          name: lint
+          command: yarn lint
