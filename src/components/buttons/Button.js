@@ -1,20 +1,24 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import ButtonBase from './ButtonBase';
 import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 import { COLORS } from '../../base/Colors';
 
-class Button extends Component {
-  static propTypes = {
-    children: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    primary: PropTypes.bool,
-    disabled: PropTypes.bool,
-    isLoading: PropTypes.bool,
-  };
+type Props = {
+  children: string,
+  color?: string,
+  primary?: boolean,
+  disabled?: boolean,
+  isLoading?: boolean,
+};
 
+type State = {
+  text: string,
+};
+
+class Button extends Component<Props, State> {
   static defaultProps = {
     color: COLORS.BLUE,
     primary: true,

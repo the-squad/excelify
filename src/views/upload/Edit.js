@@ -1,6 +1,9 @@
+// @flow
 import React, { Component } from 'react';
 
-class Edit extends Component {
+type Props = {};
+
+class Edit extends Component<Props> {
   editPhoto = () => {};
   render() {
     return <div>Edit</div>;

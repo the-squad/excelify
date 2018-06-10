@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { ThemeProvider, injectGlobal } from 'styled-components';
@@ -30,8 +31,10 @@ const routes = [
   },
 ];
 
-class App extends React.Component {
-  constructor(props) {
+export type Props = {};
+
+class App extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
 
     SetGlobalFont();

@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,13 +20,15 @@ const UploadContainer = Flex.extend`
   border-radius: 4px;
 `;
 
-class Upload extends Component {
-  static propTypes = {
-    saveImage: PropTypes.func.isRequired,
-  };
+type Props = {
+  saveImage: Function,
+};
+
+class Upload extends Component<Props> {
+  fileInput: ?Object;
 
   upload = () => {
-    const file = this.fileInput.files[0];
+    const file = this.fileInput && this.fileInput.files[0];
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
@@ -58,14 +59,18 @@ class Upload extends Component {
           <input
             type="file"
             onChange={this.upload}
-            ref={input => {
-              this.fileInput = input;
+            ref={(input: ?Object) => {
+              if (input) {
+                this.fileInput = input;
+              }
             }}
             style={{ display: 'none' }}
           />
           <Button
             onClick={() => {
-              this.fileInput.click();
+              if (this.fileInput) {
+                this.fileInput.click();
+              }
             }}
           >
             Upload Image

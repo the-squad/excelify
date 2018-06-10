@@ -1,6 +1,6 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { Flex } from 'grid-styled';
 import { bgColor } from 'styled-system';
 
@@ -28,7 +28,14 @@ const Line = styled.div`
   margin-left: -4px;
 `;
 
-const Step = ({ isDisabled, title, desc }) => {
+export type Props = {
+  isDisabled: boolean,
+  title: string,
+  desc: string,
+};
+
+const Step = (props: Props) => {
+  const { isDisabled, title, desc } = props;
   const color = isDisabled ? COLORS_VALUES[COLORS.DISABLED] : COLORS_VALUES[COLORS.BLUE];
 
   return (
@@ -48,12 +55,6 @@ const Step = ({ isDisabled, title, desc }) => {
       </Flex>
     </Flex>
   );
-};
-
-Step.propTypes = {
-  isDisabled: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
 };
 
 export default Step;
