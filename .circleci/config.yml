@@ -22,5 +22,8 @@ jobs:
           name: test
           command: yarn test
       - run:
+          name: flow
+          command: yarn run flow
+      - run:
           name: lint
           command: yarn lint
