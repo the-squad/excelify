@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Step should render when disabled 1`] = `
+.c0 {
+  box-sizing: border-box;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  box-sizing: border-box;
+  margin-left: 6px;
+  margin-top: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 {
+  color: #637282;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  font-display: fallback;
+}
+
+.c6 {
+  color: #637282;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  font-display: fallback;
+}
+
+.c2 {
+  background-color: #637282;
+  max-height: 12px;
+  max-width: 12px;
+  min-height: 12px;
+  min-width: 12px;
+  border-radius: 50%;
+}
+
+.c3 {
+  background-color: #637282;
+  border-radius: 15px;
+  width: 102%;
+  height: 4px;
+  margin-right: -4px;
+  margin-left: -4px;
+}
+
+@media screen and (min-width:40em) {
+  .c5 {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c5 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c5 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c6 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c6 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c6 {
+    font-size: 12px;
+  }
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+    >
+      
+    </div>
+    <div
+      class="c3"
+    >
+      
+    </div>
+  </div>
+  <div
+    class="c4"
+  >
+    <label
+      class="c5"
+      color="#637282"
+      font-size="17px,17px,16px,16px"
+      font-weight="600"
+      lineheight="24px"
+      tag="label"
+      type="subheading"
+    >
+      Title
+    </label>
+    <label
+      class="c6"
+      color="#637282"
+      font-size="13px,13px,12px,12px"
+      font-weight="500"
+      lineheight="24px"
+      tag="label"
+      type="caption"
+    >
+      Desc
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Step should render when not disabled 1`] = `
+.c0 {
+  box-sizing: border-box;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  box-sizing: border-box;
+  margin-left: 6px;
+  margin-top: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 {
+  color: #0070E0;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  font-display: fallback;
+}
+
+.c6 {
+  color: #0070E0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  font-display: fallback;
+}
+
+.c2 {
+  background-color: #0070E0;
+  max-height: 12px;
+  max-width: 12px;
+  min-height: 12px;
+  min-width: 12px;
+  border-radius: 50%;
+}
+
+.c3 {
+  background-color: #0070E0;
+  border-radius: 15px;
+  width: 102%;
+  height: 4px;
+  margin-right: -4px;
+  margin-left: -4px;
+}
+
+@media screen and (min-width:40em) {
+  .c5 {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c5 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c5 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c6 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c6 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c6 {
+    font-size: 12px;
+  }
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+    >
+      
+    </div>
+    <div
+      class="c3"
+    >
+      
+    </div>
+  </div>
+  <div
+    class="c4"
+  >
+    <label
+      class="c5"
+      color="#0070E0"
+      font-size="17px,17px,16px,16px"
+      font-weight="600"
+      lineheight="24px"
+      tag="label"
+      type="subheading"
+    >
+      Title
+    </label>
+    <label
+      class="c6"
+      color="#0070E0"
+      font-size="13px,13px,12px,12px"
+      font-weight="500"
+      lineheight="24px"
+      tag="label"
+      type="caption"
+    >
+      Desc
+    </label>
+  </div>
+</div>
+`;
