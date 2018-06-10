@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import image from './image';
+
+export default combineReducers({
+  image,
+});
