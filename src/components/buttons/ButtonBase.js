@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bgColor } from 'styled-system';
+import { bgColor, space } from 'styled-system';
 
 import Space from '../../base/Space';
 
@@ -15,7 +15,9 @@ const ButtonBase = styled.button`
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: max-content;
   ${bgColor};
+  ${space};
 
   &:not(:disabled) {
     cursor: pointer;

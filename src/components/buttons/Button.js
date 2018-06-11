@@ -66,7 +66,7 @@ class Button extends Component<Props, State> {
     return (
       <ButtonBase {...this.props} disabled={disabled || isLoading} bg={buttonBackground}>
         {isLoading && <Spinner radius={16} color={textColor} mr={2} />}
-        <Text tag="span" zIndex="1" width="max-content" color={textColor}>
+        <Text tag="span" width="max-content" color={textColor}>
           {text}
         </Text>
       </ButtonBase>

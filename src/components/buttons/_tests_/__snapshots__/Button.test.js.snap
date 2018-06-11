@@ -23,6 +23,9 @@ exports[`Button should render 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: #0070E0;
 }
 
@@ -37,8 +40,6 @@ exports[`Button should render 1`] = `
   color: #fff;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -69,11 +70,9 @@ exports[`Button should render 1`] = `
     color="white"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -103,6 +102,9 @@ exports[`Button should render color correctly with outline type 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: transparent;
 }
 
@@ -117,8 +119,6 @@ exports[`Button should render color correctly with outline type 1`] = `
   color: #0070E0;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -149,11 +149,9 @@ exports[`Button should render color correctly with outline type 1`] = `
     color="blue"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -183,6 +181,9 @@ exports[`Button should render color correctly with primary type 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: #0070E0;
 }
 
@@ -197,8 +198,6 @@ exports[`Button should render color correctly with primary type 1`] = `
   color: #fff;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -229,11 +228,9 @@ exports[`Button should render color correctly with primary type 1`] = `
     color="white"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -263,6 +260,9 @@ exports[`Button should render disabled color correctly with outline type 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: transparent;
 }
 
@@ -277,8 +277,6 @@ exports[`Button should render disabled color correctly with outline type 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -310,11 +308,9 @@ exports[`Button should render disabled color correctly with outline type 1`] = `
     color="text"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -344,6 +340,9 @@ exports[`Button should render disabled color correctly with primary type 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: #637282;
 }
 
@@ -358,8 +357,6 @@ exports[`Button should render disabled color correctly with primary type 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -391,11 +388,9 @@ exports[`Button should render disabled color correctly with primary type 1`] = `
     color="text"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -425,6 +420,9 @@ exports[`Button should render spinner when isLoading = true with outline type 1`
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: transparent;
 }
 
@@ -439,8 +437,6 @@ exports[`Button should render spinner when isLoading = true with outline type 1`
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -504,11 +500,9 @@ exports[`Button should render spinner when isLoading = true with outline type 1`
     color="text"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
@@ -538,6 +532,9 @@ exports[`Button should render spinner when isLoading = true with primary type 1`
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   background-color: #637282;
 }
 
@@ -552,8 +549,6 @@ exports[`Button should render spinner when isLoading = true with primary type 1`
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
-  z-index: 1;
   font-display: fallback;
 }
 
@@ -617,11 +612,9 @@ exports[`Button should render spinner when isLoading = true with primary type 1`
     color="text"
     font-size="15px,15px,14px,14px"
     font-weight="500"
-    lineheight="24px"
     tag="span"
     type="body"
     width="max-content"
-    zindex="1"
   >
     Button
   </span>
