@@ -13,6 +13,8 @@ RESIZED_IMAGE_WIDTH = 500
 RESIZED_IMAGE_HEIGHT = 500
 
 
+
+
 def toTxt(intmatrix):
     '''Change a 2d list of lists of 1/0 ints into lines of '#' and '.' chars'''
     return '\n'.join(''.join(('#' if p else '.') for p in row) for row in intmatrix)
@@ -100,7 +102,7 @@ def characterSegmentation(thinning_img, originalImage):
                     thinning_img[j, ss] = 200
             start, end = 0, 0
 
-    cv2.imshow("asdasd", thinning_img)
+    #cv2.imshow("asdasd", thinning_img)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
@@ -133,13 +135,17 @@ def characterSegmentation(thinning_img, originalImage):
 
 
 def colSegmentation(img):
+
+
+
+
     im_bw = preprocessing(img)
     original_img_bw = original_preprocessing(img)
     # cv2.imshow('lol', im_bw)
     # cv2.imwrite(str(counter())+'.png',im_bw)
-    # cv2.imshow('lol2', img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    #cv2.imshow('lol2', im_bw)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     Boundries = []
     original_boundaries = []
     height, width = im_bw.shape
@@ -253,6 +259,8 @@ def calc(thiningImage):
             break
         last -= 1
 
+    # print(begin,"---",last)
+
     for colIndex in range(begin, last):
         if arr[colIndex] == 0:
             counter = counter + 1
@@ -260,12 +268,109 @@ def calc(thiningImage):
             if counter > 0:
                 countArr.append(counter)
             counter = 0
-    return (max(countArr) + min(countArr)) / 2
+    #return max(countArr)
+
+    print(countArr)
+    avg=countArr[0]
+    x=0
+    for integer in countArr:
+        if integer-avg >5:
+            avg=integer
+            x=1
+
+
+    if x==1:
+        return avg
+    else:
+        return 1000
+
+
+def removeHorizintalLines(thiningImage):
+    #cv2.imshow('img1111', thiningImage)
+    edges = cv2.Canny(thiningImage, 50, 150, apertureSize=3)
+
+    #cv2.imshow("canny",edges)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+
+    minLineLength = 50
+    lines = cv2.HoughLinesP(image=edges, rho=1, theta=np.pi / 180, threshold=50, lines=np.array([]),
+                            minLineLength=minLineLength, maxLineGap=30)
+    if lines is not None:
+        a, b, c = lines.shape
+        for i in range(a):
+            x = lines[i][0][0] - lines[i][0][2]
+            y = lines[i][0][1] - lines[i][0][3]
+            if x != 0:
+                if abs(y / x) < 1:
+                    cv2.line(thiningImage, (lines[i][0][0], lines[i][0][1]), (lines[i][0][2], lines[i][0][3]),
+                             (0, 0, 0), 1,
+                             cv2.LINE_AA)
+
+        se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+        gray = cv2.morphologyEx(thiningImage, cv2.MORPH_CLOSE, se)
+        #cv2.imwrite('houghlines.jpg', gray)
+        print("done")
+
+        #cv2.imshow('img', gray)
+    else:
+        print('There is no lines to be detected!')
+
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+
+
+# def removeHorizintalLines(thiningImage):
+#
+#     cv2.imshow("before",thiningImage)
+#
+#
+#     Boundries = []
+#     original_boundaries = []
+#     height, width = thiningImage.shape
+#
+#     for row in range(len(thiningImage)):
+#         whitebixel=0
+#         currentCell=row
+#         rrrr=[]
+#         cccc=[]
+#         for col in range(len(thiningImage[0])):
+#             if thiningImage[currentCell,col]==255:
+#                 rrrr.append(currentCell)
+#                 cccc.append(col)
+#                 whitebixel+=1
+#             elif(currentCell < len(thiningImage)-1 and thiningImage[currentCell+1 , col]==255):
+#                 currentCell+=1
+#                 whitebixel+=1
+#                 rrrr.append(currentCell)
+#                 cccc.append(col)
+#             elif(currentCell!=0 and thiningImage[currentCell-1,col]==255):
+#                 currentCell-=1
+#                 whitebixel+=1
+#                 rrrr.append(currentCell)
+#                 cccc.append(col)
+#
+#             if (whitebixel >= 30):
+#                 for r in rrrr:
+#                     for c in cccc:
+#                         thiningImage[r, c] = 0
+#                 rrrr.clear()
+#                 cccc.clear()
+#                 whitebixel=0
+#
+#
+#     cv2.imshow("after",thiningImage)
+#     cv2.waitKey()
+#     cv2.destroyAllWindows()
 
 
 def wordSegmentaion(thiningImage,originalImage):
+
+    #removeHorizintalLines(thiningImage)
     # dilation
-    kernel = np.ones((20, round(calc(thiningImage))), np.uint8)
+    kernel = np.ones((1, thiningImage.shape[1]), np.uint8)
 
     img_dilation = cv2.dilate(thiningImage, kernel, iterations=1)
     #cv2.imshow('dilated',img_dilation)
@@ -289,15 +394,25 @@ def wordSegmentaion(thiningImage,originalImage):
 
         height = roi_original.shape[0]
         width = roi_original.shape[1]
-        if(height>40 and width>40):
-            #cv2.imshow('segment no:' + str(i), roi)
-            cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi_original)
-            #cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi2)
-            cv2.rectangle(thiningImage, (x, y), (x + w, y + h), (90, 0, 255), 2)
-            characterSegmentation(roi2_thining,roi_original)
-            cv2.waitKey(0)
+
+        cv2.rectangle(thiningImage, (x, y), (x + w, y + h), (90, 0, 255), 2 )
+        cv2.imshow("-----",thiningImage)
+        cv2.waitKey()
+        cv2.destroyAllWindows()
+
+        # cv2.imshow("asdasd", thiningImage)
+        # if(height>40 and width>40):
+        #     #cv2.imshow('segment no:' + str(i), roi)
+        #     cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi_original)
+        #     #cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + ".png", roi2)
+        #
+        #     #characterSegmentation(roi2_thining,roi_original)
+        #     cv2.waitKey(0)
 
 def rowSegmentation(img):
+    cv2.imshow("before",img)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     (thresh, img) = cv2.threshold(imgGray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     height, width = img.shape
@@ -391,7 +506,7 @@ def main():
     # os.makedirs("output\\words-result")
     # os.makedirs("output\\OriginalCols")
     # img = cv2.imread("Tables-examples\\table10.jpg")
-    img = cv2.imread("D:\\GP\\New folder\\graduation-project\\api\\Code\\Tables-examples\\table19.jpg")
+    img = cv2.imread("Tables-examples\\Table10.jpg")
 
     rowSegmentation(img)
     # predictCharacter(img)
