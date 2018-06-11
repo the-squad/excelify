@@ -2912,6 +2912,10 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+
 expand-brackets@^0.1.4:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-0.1.5.tgz#df07284e342a807cd733ac5af72411e581d1177b"
@@ -3575,6 +3579,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
 he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+
+hex-to-rgba@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hex-to-rgba/-/hex-to-rgba-1.0.1.tgz#81adf8306207d659286cf80d71a9b5245c9c6cbe"
 
 history@^4.7.2:
   version "4.7.2"
@@ -6374,13 +6382,26 @@ react-hot-loader@^4.3.1:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
+react-image-crop@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-4.0.1.tgz#8a9c441dfe9c3af9dd988528dade340d7aa65a06"
+
 react-is@^16.3.1, react-is@^16.4.0:
   version "16.4.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.0.tgz#cc9fdc855ac34d2e7d9d2eb7059bbc240d35ffcf"
 
-react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-modal@^3.4.5:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.4.5.tgz#75a7eefb8f4c8247278d5ce1c41249d7785d9f69"
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^3.0.0"
 
 react-reconciler@^0.7.0:
   version "0.7.0"
