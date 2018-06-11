@@ -51,27 +51,25 @@ exports[`Progress should render 1`] = `
 }
 
 .c6 {
-  color: #0070E0;
+  color: blue;
   font-weight: 600;
-  font-size: 17px;
-  line-height: 24px;
+  font-size: 15px;
   font-display: fallback;
 }
 
 .c7 {
-  color: #0070E0;
+  color: blue;
   font-weight: 500;
   font-size: 13px;
-  line-height: 24px;
   font-display: fallback;
 }
 
 .c3 {
   background-color: #0070E0;
-  max-height: 12px;
-  max-width: 12px;
-  min-height: 12px;
-  min-width: 12px;
+  max-height: 10px;
+  max-width: 10px;
+  min-height: 10px;
+  min-width: 10px;
   border-radius: 50%;
 }
 
@@ -86,19 +84,19 @@ exports[`Progress should render 1`] = `
 
 @media screen and (min-width:40em) {
   .c6 {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 
 @media screen and (min-width:52em) {
   .c6 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
 @media screen and (min-width:64em) {
   .c6 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -145,21 +143,19 @@ exports[`Progress should render 1`] = `
     >
       <label
         class="c6"
-        color="#0070E0"
-        font-size="17px,17px,16px,16px"
+        color="blue"
+        font-size="15px,15px,14px,14px"
         font-weight="600"
-        lineheight="24px"
         tag="label"
-        type="subheading"
+        type="body"
       >
         Upload Image
       </label>
       <label
         class="c7"
-        color="#0070E0"
+        color="blue"
         font-size="13px,13px,12px,12px"
         font-weight="500"
-        lineheight="24px"
         tag="label"
         type="caption"
       >
@@ -189,21 +185,19 @@ exports[`Progress should render 1`] = `
     >
       <label
         class="c6"
-        color="#0070E0"
-        font-size="17px,17px,16px,16px"
+        color="blue"
+        font-size="15px,15px,14px,14px"
         font-weight="600"
-        lineheight="24px"
         tag="label"
-        type="subheading"
+        type="body"
       >
         Crop Image
       </label>
       <label
         class="c7"
-        color="#0070E0"
+        color="blue"
         font-size="13px,13px,12px,12px"
         font-weight="500"
-        lineheight="24px"
         tag="label"
         type="caption"
       >
@@ -233,21 +227,19 @@ exports[`Progress should render 1`] = `
     >
       <label
         class="c6"
-        color="#0070E0"
-        font-size="17px,17px,16px,16px"
+        color="blue"
+        font-size="15px,15px,14px,14px"
         font-weight="600"
-        lineheight="24px"
         tag="label"
-        type="subheading"
+        type="body"
       >
         Edit Image
       </label>
       <label
         class="c7"
-        color="#0070E0"
+        color="blue"
         font-size="13px,13px,12px,12px"
         font-weight="500"
-        lineheight="24px"
         tag="label"
         type="caption"
       >
