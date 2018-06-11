@@ -43,7 +43,7 @@ const COLORS_VALUES = {
   [COLORS.BORDER]: baseColors.light,
   [COLORS.HEADER]: baseColors.primary,
   [COLORS.WHITE]: baseColors.white,
-  [COLORS.SEPARATOR]: baseColors.grey,
+  [COLORS.SEPARATOR]: baseColors.light,
 };
 
 export { COLORS, COLORS_VALUES };

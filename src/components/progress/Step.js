@@ -8,7 +8,7 @@ import Text from '../text/Text';
 import { COLORS, COLORS_VALUES } from '../../base/Colors';
 import { FONT_WEIGHTS, FONT_TYPES } from '../../base/Typography';
 
-const pointRadius = '12px';
+const pointRadius = '10px';
 
 const Point = styled.div`
   ${bgColor};
@@ -36,17 +36,17 @@ export type Props = {
 
 const Step = (props: Props) => {
   const { isDisabled, title, desc } = props;
-  const color = isDisabled ? COLORS_VALUES[COLORS.DISABLED] : COLORS_VALUES[COLORS.BLUE];
+  const color = isDisabled ? COLORS.DISABLED : COLORS.BLUE;
 
   return (
     <Flex flexDirection="column" width={1}>
       <Flex flexDirection="row" alignItems="center">
-        <Point bg={color} />
-        <Line bg={color} />
+        <Point bg={COLORS_VALUES[color]} />
+        <Line bg={COLORS_VALUES[color]} />
       </Flex>
 
       <Flex flexDirection="column" mt={2} ml="6px">
-        <Text type={FONT_TYPES.SUBHEADING} fontWeight={FONT_WEIGHTS.SEMI_BOLD} color={color}>
+        <Text type={FONT_TYPES.BODY} fontWeight={FONT_WEIGHTS.SEMI_BOLD} color={color}>
           {title}
         </Text>
         <Text type={FONT_TYPES.CAPTION} color={color}>

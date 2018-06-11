@@ -1,15 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { space, width, fontSize, color, fontWeight, lineHeight, zIndex } from 'styled-system';
+import { space, width, fontSize, color, fontWeight, lineHeight } from 'styled-system';
 
-import { FONT_SIZES, FONT_WEIGHTS, FONT_TYPES, LINE_HEIGHTS } from '../../base/Typography';
+import { FONT_SIZES, FONT_WEIGHTS, FONT_TYPES } from '../../base/Typography';
 import { COLORS } from '../../base/Colors';
 
 const propTypes = {
   fontWeight: PropTypes.oneOf(Object.values(FONT_WEIGHTS)),
   fontSize: PropTypes.oneOf(Object.values(FONT_SIZES)),
-  lineHeight: PropTypes.oneOf(Object.values(LINE_HEIGHTS)),
   color: PropTypes.oneOf(Object.values(COLORS)),
   tag: PropTypes.string,
   children: PropTypes.string.isRequired,
@@ -21,7 +20,6 @@ const propTypes = {
 const defaultProps = {
   fontWeight: FONT_WEIGHTS.NORMAL,
   fontSize: FONT_SIZES[FONT_TYPES.BODY],
-  lineHeight: LINE_HEIGHTS[FONT_TYPES.BODY],
   color: COLORS.TEXT,
   tag: 'label',
 };
@@ -45,7 +43,6 @@ const Text = styled(Base)`
   ${fontWeight}
   ${fontSize}
   ${lineHeight}
-  ${zIndex}
   font-display: fallback;
 `;
 
@@ -54,7 +51,7 @@ Text.defaultProps = defaultProps;
 
 const TextHOC = props => {
   const { type } = props;
-  return <Text {...props} fontSize={FONT_SIZES[type]} lineHeight={LINE_HEIGHTS[type]} />;
+  return <Text {...props} fontSize={FONT_SIZES[type]} />;
 };
 
 TextHOC.propTypes = {

@@ -23,6 +23,9 @@ exports[`ButtonBase should render 1`] = `
   outline: none;
   position: relative;
   min-width: 120px;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
 }
 
 .c0:not(:disabled) {

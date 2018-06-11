@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageField should render 1`] = `
+<input
+  accept=".png,.jpg,.jpeg"
+  style="display:none"
+  type="file"
+>
+  
+</input>
+`;
