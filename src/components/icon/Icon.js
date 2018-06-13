@@ -14,7 +14,7 @@ export type Props = {
 
 const Icon = (props: Props) => {
   const { icon, width, color } = props;
-  const viewBoxWidth = icon.icon.width;
+  const viewBoxWidth = icon.icon.width || HEIGHT;
   const viewBox = `0 0 ${viewBoxWidth} ${HEIGHT}`;
   const { paths } = icon.icon;
 

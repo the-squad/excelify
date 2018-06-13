@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import Text from '../../components/text/Text';
 import Button from '../../components/buttons/Button';
@@ -16,34 +17,31 @@ import { saveImage } from '../../store/actions/image';
 
 const UploadContainer = Flex.extend`
   height: 370px;
-  border: 4px dashed ${COLORS_VALUES[COLORS.DISABLED]};
+  border: 3px dashed ${COLORS_VALUES[COLORS.DISABLED]};
   border-radius: 4px;
 `;
 
 type Props = {
+  getImageFieldRef: Function,
   saveImage: Function,
+  nextStep: Function,
+  history: Object,
 };
 
 class Upload extends Component<Props> {
-  fileInput: ?Object;
-
-  upload = () => {
-    const file = this.fileInput && this.fileInput.files[0];
-    const fileReader = new FileReader();
-
-    fileReader.onloadend = () => {
-      this.props.saveImage(fileReader.result);
-    };
-
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
+  onUploadImage = image => {
+    this.props.saveImage(image);
+    this.props.nextStep();
+    this.props.history.push('/crop');
   };
 
   render() {
+    const { getImageFieldRef } = this.props;
+    this.props.getImageFieldRef().setProps(this.onUploadImage);
+
     return (
       <UploadContainer width={1} height={500} alignItems="center" justifyContent="center">
-        <Flex flexDirection="column" mr={6}>
+        <Flex flexDirection="column" mr={5}>
           <Text
             color={COLORS.DISABLED}
             type={FONT_TYPES.SUPER_TITLE}
@@ -55,28 +53,18 @@ class Upload extends Component<Props> {
           <Text color={COLORS.DISABLED} type={FONT_TYPES.HEADING}>
             or upload using the button below
           </Text>
-          <Box mb={4} />
-          <input
-            type="file"
-            onChange={this.upload}
-            ref={(input: ?Object) => {
-              if (input) {
-                this.fileInput = input;
-              }
-            }}
-            style={{ display: 'none' }}
-          />
+          <Box mb={3} />
           <Button
             onClick={() => {
-              if (this.fileInput) {
-                this.fileInput.click();
-              }
+              getImageFieldRef().click();
             }}
           >
             Upload Image
           </Button>
         </Flex>
-        <Icon icon={IconsStore.getIcon('drag')} width={175} color={COLORS.DISABLED} />
+        <Flex>
+          <Icon icon={IconsStore.getIcon('drag')} width={125} color={COLORS.DISABLED} />
+        </Flex>
       </UploadContainer>
     );
   }
@@ -93,4 +81,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   null,
   mapDispatchToProps,
-)(Upload);
+)(withRouter(Upload));

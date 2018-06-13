@@ -5,7 +5,6 @@ exports[`Typography should render 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
   font-display: fallback;
 }
 
@@ -32,7 +31,6 @@ exports[`Typography should render 1`] = `
   color="text"
   font-size="15px,15px,14px,14px"
   font-weight="500"
-  lineheight="24px"
   tag="label"
   type="body"
 >
@@ -45,7 +43,6 @@ exports[`Typography should render color correctly 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
   font-display: fallback;
 }
 
@@ -72,7 +69,6 @@ exports[`Typography should render color correctly 1`] = `
   color="text"
   font-size="15px,15px,14px,14px"
   font-weight="500"
-  lineheight="24px"
   tag="label"
   type="body"
 >
@@ -85,7 +81,6 @@ exports[`Typography should render font weight correctly 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
   font-display: fallback;
 }
 
@@ -112,7 +107,6 @@ exports[`Typography should render font weight correctly 1`] = `
   color="text"
   font-size="15px,15px,14px,14px"
   font-weight="500"
-  lineheight="24px"
   tag="label"
   type="body"
 >
@@ -165,7 +159,6 @@ exports[`Typography should render type correctly 1`] = `
   color: #1b2733;
   font-weight: 500;
   font-size: 15px;
-  line-height: 24px;
   font-display: fallback;
 }
 
@@ -192,7 +185,6 @@ exports[`Typography should render type correctly 1`] = `
   color="text"
   font-size="15px,15px,14px,14px"
   font-weight="500"
-  lineheight="24px"
   tag="label"
   type="body"
 >
