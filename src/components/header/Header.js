@@ -10,7 +10,7 @@ import { FONT_TYPES } from '../../base/Typography';
 
 const HeaderContainer = Flex.extend`
   border-bottom: 1px solid ${COLORS_VALUES[COLORS.BORDER]};
-  padding: ${Space[2]}px ${Space[8]}px;
+  padding: ${Space[2]}px ${Space[4]}px;
 `;
 
 const Logo = styled(Text)`
