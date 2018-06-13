@@ -1,3 +1,4 @@
+// @flow
 import { IMAGE } from '../actions/image';
 
 const initialState = {
