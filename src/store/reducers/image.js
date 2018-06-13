@@ -12,7 +12,7 @@ const initialState = {
   croppedImage: undefined,
 };
 
-export default (state = initialState, { type, ...payload }) => {
+export default (state: Object = initialState, { type, ...payload }: Object) => {
   switch (type) {
     case IMAGE.SET: {
       return {

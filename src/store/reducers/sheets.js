@@ -13,7 +13,7 @@ const initialState = {
   })),
 };
 
-export default (state = initialState, { type, ...payload }) => {
+export default (state: Object = initialState, { type, ...payload }: Object) => {
   switch (type) {
     case SHEETS.SET: {
       const sheets = state.sheets.unshift(payload.sheets);

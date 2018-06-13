@@ -2,27 +2,33 @@
 const alphabetic = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Generates columns
-export const generateColumns = () =>
-  Array.from(alphabetic).map(char => ({
-    name: char,
-    value: char,
-    width: 100,
-    readOnly: true,
-  }));
+export const generateColumns = (): Array<any> =>
+  Array.from(alphabetic).map(
+    (char: string): Object => ({
+      name: char,
+      value: char,
+      width: 100,
+      readOnly: true,
+    }),
+  );
 
-export const generateEmptyColumn = (rowIndex: number) =>
-  Array.from(alphabetic).map((_, index) => ({
-    name: '',
-    value: index === 0 ? rowIndex : '',
-    readOnly: index === 0,
-  }));
+export const generateEmptyColumn = (rowIndex: number): Array<any> =>
+  Array.from(alphabetic).map(
+    (_: any, index: number): Object => ({
+      name: '',
+      value: index === 0 ? rowIndex : '',
+      readOnly: index === 0,
+    }),
+  );
 
-export const generateRow = (row: Array<any>, rowIndex: number) =>
-  Array.from(alphabetic).map((_, index) => ({
-    name: row[index],
-    value: index === 0 ? rowIndex : row[index],
-    readOnly: index === 0,
-  }));
+export const generateRow = (row: Array<any>, rowIndex: number): Array<Object> =>
+  Array.from(alphabetic).map(
+    (_: any, index: number): Object => ({
+      name: row[index],
+      value: index === 0 ? rowIndex : row[index],
+      readOnly: index === 0,
+    }),
+  );
 
 export const generateTable = (rows: Array<Array<any>>) => {
   const table = [];
