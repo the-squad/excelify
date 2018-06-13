@@ -12,7 +12,6 @@ exports[`InfiniteLoadingBar should render 1`] = `
 }
 
 .c1 {
-  background-color: #06BEE1;
   border-radius: 15px;
 }
 
