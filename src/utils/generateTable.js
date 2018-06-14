@@ -30,6 +30,29 @@ export const generateRow = (row: Array<any>, rowIndex: number): Array<Object> =>
     }),
   );
 
+export const removeRowCount = (row: Array<Object>): Array<Object> => {
+  row.shift();
+  return row;
+};
+
+export const getPureTable = (table: Array<Array<Object>>): Array<Array<string | number>> => {
+  const cleanTable = [];
+  const exportTable = [];
+
+  // Remove the first row and row's number cell's
+  for (let rowCounter = 1; rowCounter < 25; rowCounter += 1) {
+    cleanTable.push(removeRowCount(table[rowCounter - 1]));
+  }
+
+  // Get cell's value
+  cleanTable.forEach((row: Array<Array<any>>) => {
+    const rowItems = row.map((column: Array<Object>) => column.value);
+    exportTable.push(rowItems);
+  });
+
+  return exportTable;
+};
+
 export const generateTable = (rows: Array<Array<any>>) => {
   const table = [];
   table.push(generateColumns());
