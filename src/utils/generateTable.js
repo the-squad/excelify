@@ -1,4 +1,7 @@
 // @flow
+
+import Lodash from 'lodash';
+
 const alphabetic = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Generates columns
@@ -31,11 +34,12 @@ export const generateRow = (row: Array<any>, rowIndex: number): Array<Object> =>
   );
 
 export const removeRowCount = (row: Array<Object>): Array<Object> => {
-  row.shift();
-  return row;
+  const rowCopy = Lodash.cloneDeep(row);
+  rowCopy.shift();
+  return rowCopy;
 };
 
-export const getPureTable = (table: Array<Array<Object>>): Array<Array<string | number>> => {
+export const getPureTable = (table: Array<Array<any>>): Array<Array<any>> => {
   const cleanTable = [];
   const exportTable = [];
 
@@ -45,7 +49,7 @@ export const getPureTable = (table: Array<Array<Object>>): Array<Array<string | 
   }
 
   // Get cell's value
-  cleanTable.forEach((row: Array<Array<any>>) => {
+  cleanTable.forEach((row: Array<any>) => {
     const rowItems = row.map((column: Array<Object>) => column.value);
     exportTable.push(rowItems);
   });

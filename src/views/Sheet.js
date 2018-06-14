@@ -6,7 +6,7 @@ import { Flex, Box } from 'grid-styled';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
 
-import { getPureTable } from '../utils/generateTable';
+import { getPureTable } from '../utils/GenerateTable';
 
 import Button from '../components/buttons/Button';
 import Text from '../components/text/Text';
