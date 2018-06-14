@@ -1,11 +1,9 @@
 import cv2
 import thinning as p
 
+
 class ColSegmentation:
-
-
-
-    def preprocessing(self,im_bw):
+    def preprocessing(self, im_bw):
 
         w = 0
         b = 0
@@ -19,12 +17,11 @@ class ColSegmentation:
             im_bw = cv2.bitwise_not(im_bw)
         return im_bw
 
-
-    def getBoundariesIndices(self,thining_image):
+    def getBoundariesIndices(self, thining_image):
 
         height, width = thining_image.shape
 
-        Boundries=[]
+        Boundries = []
 
         for colIndex in range(width):  # width(no.of columns)
             whitekPixel = 0
@@ -46,15 +43,17 @@ class ColSegmentation:
                 Boundries.append(colIndex)
         return Boundries
 
-    def colSegmentation(self,img):
+    def colSegmentation(self, img):
 
-        original_imgage = self.preprocessing(img)  # keep original image after preprocess,background white and words black
-        thining_image = p.guo_hall_thinning(original_imgage.copy())  # make thining for image,it make background black and words white
+        original_imgage = self.preprocessing(
+            img)  # keep original image after preprocess,background white and words black
+        thining_image = p.guo_hall_thinning(
+            original_imgage.copy())  # make thining for image,it make background black and words white
         height, width = thining_image.shape
 
-        Boundries=self.getBoundariesIndices(thining_image)
+        Boundries = self.getBoundariesIndices(thining_image)
 
-        colIndices=[]
+        colIndices = []
 
         # for thinned image
         for col in range(0, len(Boundries) - 1):
@@ -62,7 +61,7 @@ class ColSegmentation:
             original_croped_image = original_imgage[0:height, Boundries[col]:Boundries[col + 1]]
             # imgNumber = str(counter())
             if len(thining_croped_image[0]) > 10 and len(thining_croped_image) > 10:
-                colIndices.append((thining_croped_image,original_croped_image))
+                colIndices.append((thining_croped_image, original_croped_image))
                 # cv2.imwrite("output\\cols\\" + imgNumber + ".png", original_croped_image)
                 # wordSegmentaion(thining_croped_image, original_croped_image)
         return colIndices
