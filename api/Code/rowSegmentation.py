@@ -2,9 +2,16 @@ import cv2
 import operator
 
 class RowSegmentation:
+
+
     def __init__(self,image):
+        image = self.noise_clearing(image)
         self.image=image
         self.height, self.width = image.shape
+
+    def noise_clearing(color_img):
+        noise_cleared = cv2.fastNlMeansDenoisingColored(color_img, None, 10, 10, 7, 21)
+        return noise_cleared
 
     def convert_to_binary(self):
         imgGray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
