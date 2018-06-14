@@ -13,7 +13,7 @@ const baseColors = {
 
 const COLORS = {
   BLUE: 'blue',
-  RED: 'red',
+  SECONDARY: 'secondary',
   DANGER: 'danger',
   PAGE_BACKGROUND: 'pageBackground',
   SUCCESS: 'success',
@@ -31,7 +31,7 @@ const COLORS = {
 
 const COLORS_VALUES = {
   [COLORS.BLUE]: baseColors.primary,
-  [COLORS.PRIMARY_RED]: baseColors.secondary,
+  [COLORS.SECONDARY]: baseColors.secondary,
   [COLORS.DANGER]: baseColors.danger,
   [COLORS.PAGE_BACKGROUND]: baseColors.light,
   [COLORS.SUCCESS]: baseColors.success,

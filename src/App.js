@@ -9,6 +9,7 @@ import store from './store';
 
 import theme from './base/Theme';
 import Upload from './views/upload';
+import Sheet from './views/Sheet';
 
 import Header from './components/header/Header';
 import SetGlobalFont from './components/text/SetGlobalFont';
@@ -28,6 +29,10 @@ const routes = [
   {
     path: '/upload',
     component: Upload,
+  },
+  {
+    path: '/',
+    component: Sheet,
   },
 ];
 
