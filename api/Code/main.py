@@ -1,13 +1,11 @@
 import cv2
 import math
 import numpy as np
-import os
 import operator
 import thinning as p
 from keras.models import load_model
 
 MIN_CONTOUR_AREA = 100
-import random
 
 RESIZED_IMAGE_WIDTH = 500
 RESIZED_IMAGE_HEIGHT = 500
@@ -33,6 +31,7 @@ def counter():
 
 
 def preprocessing(im_bw):
+
     w = 0
     b = 0
     for i in range(len(im_bw)):
@@ -43,23 +42,8 @@ def preprocessing(im_bw):
                 w += 1
     if (w > b):
         im_bw = cv2.bitwise_not(im_bw)
-
-    im_bw = p.guo_hall_thinning(im_bw)
     return im_bw
 
-
-def original_preprocessing(img):
-    w = 0
-    b = 0
-    for i in range(len(img)):
-        for j in range(len(img[0])):
-            if img[i, j] == 0:
-                b += 1
-            else:
-                w += 1
-    if (w > b):
-        im_bw = cv2.bitwise_not(img)
-    return im_bw
 
 
 def characterSegmentation(thinning_img, originalImage):
@@ -137,46 +121,40 @@ def characterSegmentation(thinning_img, originalImage):
 
 def colSegmentation(img):
 
-    im_bw = preprocessing(img)
-    original_img_bw = original_preprocessing(img)
-    # cv2.imshow('lol', im_bw)
-    # cv2.imwrite("output\\rows\\"+str(counter())+'.png',original_img_bw)
-    # cv2.imwrite("output\\rows\\"+str(counter())+'thin.png',im_bw)
-    #cv2.imshow('lol2', im_bw)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    Boundries = []
-    original_boundaries = []
-    height, width = im_bw.shape
-    original_height, original_width = original_img_bw.shape
 
-    # for thinned image
-    for i in range(len(im_bw[0])):  # width(no.of columns)
-        blackPixel = 0
-        current_cell = i
-        for j in range(len(im_bw)):  # height(no.of rows in column)
-            if im_bw[j, current_cell] == 255:
-                blackPixel += 1
-            elif (current_cell < len(im_bw[0]) - 1 and im_bw[j, current_cell + 1] == 255):
-                blackPixel += 1
+    original_imgage = preprocessing(img)   #keep original image after preprocess,background white and words black
+    thining_image = p.guo_hall_thinning(original_imgage.copy())  #make thining for image,it make background black and words white
+
+
+    Boundries = [] #for keep colIndices for crop
+
+    height, width = thining_image.shape
+
+    for colIndex in range(width):  # width(no.of columns)
+        whitekPixel = 0
+        current_cell = colIndex #to keep track for sequential col contain lines
+
+        for rowIndex in range(height):  # height(no.of rows in column)
+            if thining_image[rowIndex, current_cell] == 255: #for check below pixel "high priority than other"
+                whitekPixel += 1
+            elif (current_cell < width - 1 and thining_image[rowIndex, current_cell + 1] == 255): #for check right below pixel and not out of index
+                whitekPixel += 1
                 current_cell += 1
-            elif (current_cell != 0 and im_bw[j, current_cell - 1] == 255):
-                blackPixel += 1
+            elif (current_cell != 0 and thining_image[rowIndex, current_cell - 1] == 255): #for check left below pixel and not out of index
+                whitekPixel += 1
                 current_cell -= 1
 
-        if blackPixel >= round(height * .90):
-            Boundries.append(i)
+        if whitekPixel >= round(height * .90): #check Number of pixel , to know it is col or not
+            Boundries.append(colIndex)
 
     # for thinned image
     for i in range(0, len(Boundries) - 1):
-        crop = im_bw[0:height, Boundries[i]:Boundries[i + 1]]
-        #original_crop = original_img_bw[0 + 4:original_height - 3, Boundries[i] + 4:Boundries[i + 1]]
-        original_cropppp = original_img_bw[0:original_height, Boundries[i]:Boundries[i + 1]]
-        img = str(counter())
-        if len(crop[0]) > 10 and len(crop) > 10:
-            cv2.imwrite("output\\cols\\" + img + ".png", original_cropppp)
-            #cv2.imwrite("output\\cols\\" + img + "thin.png", crop)
-            wordSegmentaion(crop, original_cropppp)
+        thining_croped_image = thining_image[0:height, Boundries[i]:Boundries[i + 1]]
+        original_croped_image = original_imgage[0:height, Boundries[i]:Boundries[i + 1]]
+        imgNumber = str(counter())
+        if len(thining_croped_image[0]) > 10 and len(thining_croped_image) > 10:
+            cv2.imwrite("output\\cols\\" + imgNumber + ".png", original_croped_image)
+            wordSegmentaion(thining_croped_image, original_croped_image)
 
 
 '''def wordSegmentaion(img2):
