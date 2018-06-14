@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import XLSX from 'xlsx';
 import { connect } from 'react-redux';
 import { Flex, Box } from 'grid-styled';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
+
+import { getPureTable } from '../utils/GenerateTable';
 
 import Button from '../components/buttons/Button';
 import Text from '../components/text/Text';
@@ -63,6 +66,17 @@ class Sheet extends React.Component<Props, State> {
     });
   };
 
+  onExport = () => {
+    const { activeSheet } = this.state;
+    const { sheets } = this.props;
+    const sheet = sheets[activeSheet];
+    const table = getPureTable(sheet.sheet);
+    const worksheet = XLSX.utils.aoa_to_sheet(table);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheet.name);
+    XLSX.writeFile(workbook, `${sheet.name}.xlsx`);
+  };
+
   render() {
     const { sheets } = this.props;
     const { activeSheet } = this.state;
@@ -93,7 +107,9 @@ class Sheet extends React.Component<Props, State> {
                 {sheets[activeSheet].date}
               </Text>
             </Flex>
-            <Button primary={false}>Export as .xlsx</Button>
+            <Button onClick={this.onExport} primary={false}>
+              Export as .xlsx
+            </Button>
           </HeaderContainer>
           <ReactDataSheet
             data={this.props.sheets[activeSheet].sheet}
