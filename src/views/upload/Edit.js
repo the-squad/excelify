@@ -111,6 +111,8 @@ class Edit extends Component<Props, State> {
     const image: HTMLImageElement = await this.loadImage(
       this.props.image || this.props.originalImage,
     );
+    canvas.width = image.width;
+    canvas.height = image.height;
     ctx.drawImage(image, 0, 0);
     let newImageData: ImageData = ctx.getImageData(0, 0, image.width, image.height);
     newImageData = this.applyBrightness(newImageData, brightness);
