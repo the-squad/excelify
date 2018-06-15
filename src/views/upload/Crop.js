@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ReactCrop from 'react-image-crop';
 import { Flex } from 'grid-styled';
-import { withRouter } from 'react-router-dom';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import Button from '../../components/buttons/Button';
@@ -22,7 +21,6 @@ type Props = {
     height: number,
     width: number,
   },
-  history: Object,
   saveCroppedImage: Function,
   nextStep: Function,
   previousStep: Function,
@@ -54,21 +52,14 @@ class Crop extends Component<Props, State> {
     const image = await this.getCroppedImg(this.props.image, pixelCrop);
     const imageReader = new FileReader();
     let base64Image;
+
+    // Return if there isn't image object
+    if (!image) return;
     imageReader.readAsDataURL(image);
     imageReader.onloadend = () => {
       base64Image = imageReader.result;
       this.props.saveCroppedImage(base64Image, pixelCrop);
     };
-  };
-
-  onNext = () => {
-    this.props.nextStep();
-    this.props.history.push('/edit');
-  };
-
-  onBack = () => {
-    this.props.previousStep();
-    this.props.history.push('/');
   };
 
   getCroppedImg = (image: string, pixelCrop: Object) => {
@@ -111,10 +102,10 @@ class Crop extends Component<Props, State> {
         />
 
         <Flex justifyContent="flex-end" width={1} mt={3}>
-          <Button onClick={this.onBack} primary={false} ml={2} color={COLORS.TEXT}>
+          <Button onClick={this.props.previousStep} primary={false} ml={2} color={COLORS.TEXT}>
             Back
           </Button>
-          <Button onClick={this.onNext}>Crop and Continue</Button>
+          <Button onClick={this.props.nextStep}>Crop and Continue</Button>
         </Flex>
       </Flex>
     );
@@ -137,4 +128,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(Crop));
+)(Crop);
