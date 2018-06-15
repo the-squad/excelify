@@ -67,6 +67,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 type Props = {
   children: any,
+  onClose: Function,
 };
 
 type State = {
@@ -75,7 +76,7 @@ type State = {
 
 class CustomModal extends Component<Props, State> {
   state = {
-    isModalOpened: true,
+    isModalOpened: false,
   };
 
   openModal = () => {
@@ -88,6 +89,7 @@ class CustomModal extends Component<Props, State> {
   closeModal = () => {
     document.body.style.overflowY = 'auto';
     this.setState({ isModalOpened: false });
+    this.props.onClose();
   };
 
   render() {
