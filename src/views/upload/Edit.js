@@ -137,8 +137,8 @@ class Edit extends Component<Props, State> {
             <Text mb={1}>Brightness</Text>
             <Box p={2}>
               <InputRange
-                maxValue={100}
-                minValue={-100}
+                maxValue={50}
+                minValue={-50}
                 value={brightness}
                 formatLabel={() => ''}
                 onChange={this.onBrightnessChange}
@@ -150,8 +150,8 @@ class Edit extends Component<Props, State> {
             </Text>
             <Box p={2}>
               <InputRange
-                maxValue={100}
-                minValue={-100}
+                maxValue={50}
+                minValue={-50}
                 value={contrast}
                 formatLabel={() => ''}
                 onChange={this.onContrastChange}
