@@ -113,6 +113,9 @@ exports[`Header should render 1`] = `
 
 <div
   class="c0"
+  history="[object Object]"
+  location="[object Object]"
+  match="[object Object]"
 >
   <h1
     class="c1 c2"

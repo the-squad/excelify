@@ -18,6 +18,7 @@ export default (state: Object = initialState, { type, ...payload }: Object) => {
       return {
         ...state,
         image: payload.image,
+        croppedImage: payload.image,
       };
     }
 

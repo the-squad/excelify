@@ -10,6 +10,7 @@ import store from './store';
 import theme from './base/Theme';
 import Upload from './views/upload';
 import Sheet from './views/Sheet';
+import Home from './views/Home';
 
 import Header from './components/header/Header';
 import SetGlobalFont from './components/text/SetGlobalFont';
@@ -27,11 +28,11 @@ injectGlobal`
 
 const routes = [
   {
-    path: '/upload',
-    component: Upload,
+    path: '/',
+    component: Home,
   },
   {
-    path: '/',
+    path: '/sheet',
     component: Sheet,
   },
 ];
@@ -52,6 +53,7 @@ class App extends React.Component<Props> {
         <Provider store={store}>
           <React.Fragment>
             <Header />
+            <Upload />
             {routes.map(route => (
               <Route
                 key={route.path}

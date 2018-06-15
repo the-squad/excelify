@@ -1,7 +1,6 @@
 // @flow
 import { SHEETS } from '../actions/sheets';
 
-import { generateTable } from '../../utils/GenerateTable';
 import Sheets from '../../fakeData.json';
 
 const initialState = {
@@ -9,7 +8,7 @@ const initialState = {
     name: sheet.name,
     date: sheet.date,
     image: sheet.image,
-    sheet: generateTable(sheet.sheet),
+    sheet: sheet.sheet,
   })),
 };
 
