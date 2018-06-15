@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
@@ -27,28 +29,35 @@ class Edit extends Component<Props, State> {
     image: this.props.image || this.props.originalImage,
   };
 
-  onSlide = () => {
-    // const image = new Image();
-    // image.src = this.props.image;
-    // const result = ImageBrightness({ data: image, adjustment: value, asDataURL: true });
+  onBrightnessChange = (value: number) => {
+    this.brightness = value;
+    // TODO: logic here
+    // TODO: Un-comment these lines
     // this.setState({
     //   image: result,
     // });
   };
 
+  onContrastChange = (value: number) => {
+    this.contrast = value;
+    // TODO: logic here
+    // TODO: Un-comment these lines
+    // this.setState({
+    //   image: result,
+    // });
+  };
+
+  contrast: number = 0;
+  brightness: number = 0;
+
   render() {
     return (
       <Flex>
         <Box width={1}>
-          <Slider onChange={this.onSlide} />
+          <Slider onChange={this.onBrightnessChange} />
+          <Slider onChange={this.onContrastChange} />
         </Box>
-        <Image
-          src={this.state.image}
-          id="photo"
-          ref={test => {
-            this.test = test;
-          }}
-        />
+        <Image src={this.state.image} />
       </Flex>
     );
   }
