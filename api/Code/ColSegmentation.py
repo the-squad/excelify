@@ -3,6 +3,7 @@ import thinning as p
 
 
 class ColSegmentation:
+
     def preprocessing(self, im_bw):
 
         w = 0
@@ -17,7 +18,7 @@ class ColSegmentation:
             im_bw = cv2.bitwise_not(im_bw)
         return im_bw
 
-    def getBoundariesIndices(self, thining_image):
+    def get_boundaries_indices(self, thining_image):
 
         height, width = thining_image.shape
 
@@ -43,7 +44,7 @@ class ColSegmentation:
                 Boundries.append(colIndex)
         return Boundries
 
-    def colSegmentation(self, img):
+    def col_segmentation(self, img):
 
         original_imgage = self.preprocessing(
             img)  # keep original image after preprocess,background white and words black
@@ -51,7 +52,7 @@ class ColSegmentation:
             original_imgage.copy())  # make thining for image,it make background black and words white
         height, width = thining_image.shape
 
-        Boundries = self.getBoundariesIndices(thining_image)
+        Boundries = self.get_boundaries_indices(thining_image)
 
         colIndices = []
 

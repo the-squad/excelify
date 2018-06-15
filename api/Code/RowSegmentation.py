@@ -9,7 +9,7 @@ class RowSegmentation:
         self.image=image
         self.height, self.width = image.shape
 
-    def noise_clearing(color_img):
+    def noise_clearing(self,color_img):
         noise_cleared = cv2.fastNlMeansDenoisingColored(color_img, None, 10, 10, 7, 21)
         return noise_cleared
 
