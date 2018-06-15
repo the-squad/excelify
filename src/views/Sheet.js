@@ -6,7 +6,7 @@ import { Flex, Box } from 'grid-styled';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
 
-import { getPureTable } from '../utils/GenerateTable';
+import { generateTable } from '../utils/GenerateTable';
 
 import Button from '../components/buttons/Button';
 import Text from '../components/text/Text';
@@ -70,8 +70,7 @@ class Sheet extends React.Component<Props, State> {
     const { activeSheet } = this.state;
     const { sheets } = this.props;
     const sheet = sheets[activeSheet];
-    const table = getPureTable(sheet.sheet);
-    const worksheet = XLSX.utils.aoa_to_sheet(table);
+    const worksheet = XLSX.utils.aoa_to_sheet(sheet.sheet);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, sheet.name);
     XLSX.writeFile(workbook, `${sheet.name}.xlsx`);
@@ -80,6 +79,8 @@ class Sheet extends React.Component<Props, State> {
   render() {
     const { sheets } = this.props;
     const { activeSheet } = this.state;
+    const currentSheet = sheets[activeSheet];
+    const table = generateTable(currentSheet.sheet);
 
     return (
       <PageContainer>
@@ -111,10 +112,7 @@ class Sheet extends React.Component<Props, State> {
               Export as .xlsx
             </Button>
           </HeaderContainer>
-          <ReactDataSheet
-            data={this.props.sheets[activeSheet].sheet}
-            valueRenderer={cell => cell.value}
-          />
+          <ReactDataSheet data={table} valueRenderer={cell => cell.value} />
         </Flex>
       </PageContainer>
     );
