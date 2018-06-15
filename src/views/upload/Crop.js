@@ -37,6 +37,9 @@ type State = {
 
 const StyledImage = styled(ReactCrop)`
   width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
 `;
 
 class Crop extends Component<Props, State> {
