@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 
 import Text from '../../components/text/Text';
 import Button from '../../components/buttons/Button';
@@ -25,14 +24,12 @@ type Props = {
   getImageFieldRef: Function,
   saveImage: Function,
   nextStep: Function,
-  history: Object,
 };
 
 class Upload extends Component<Props> {
   onUploadImage = image => {
     this.props.saveImage(image);
     this.props.nextStep();
-    this.props.history.push('/crop');
   };
 
   render() {
@@ -81,4 +78,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   null,
   mapDispatchToProps,
-)(withRouter(Upload));
+)(Upload);

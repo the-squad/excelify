@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Route, BrowserRouter } from 'react-router-dom';
 import { Box } from 'grid-styled';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Upload from './Upload';
 import Crop from './Crop';
@@ -15,6 +16,8 @@ import ImageField from '../../components/imageField/ImageField';
 
 import { FONT_TYPES } from '../../base/Typography';
 import { COLORS, COLORS_VALUES } from '../../base/Colors';
+
+import { closeUploadModal } from '../../store/actions/modals';
 
 const routes = [
   {
@@ -52,17 +55,31 @@ const Separator = styled.div`
   background-color: ${COLORS_VALUES[COLORS.SEPARATOR]};
 `;
 
+type Props = {
+  uploadModal: boolean,
+  closeUploadModal: Function,
+};
+
 type State = {
   currentStep: number,
 };
 
-class UploadContainer extends React.Component<null, State> {
+class UploadContainer extends React.Component<Props, State> {
   state = {
     currentStep: 0,
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.uploadModal !== this.props.uploadModal && this.modal) {
+      if (this.props.uploadModal) {
+        this.modal.openModal();
+      }
+    }
+  }
+
   getImageFieldRef = () => this.imageField;
   imageField: ?Object;
+  modal: ?Object;
 
   nextStep = () => {
     this.setState(prevState => ({
@@ -86,32 +103,32 @@ class UploadContainer extends React.Component<null, State> {
             this.imageField = imageField;
           }}
         />
-        <Modal>
+        <Modal
+          ref={modal => {
+            this.modal = modal;
+          }}
+          onClose={this.props.closeUploadModal}
+        >
           <Box p={3}>
             <Text type={FONT_TYPES.SUBHEADING}>Upload an image you want to convert</Text>
           </Box>
           <Separator />
           <Box p={3}>
             <Progress steps={steps} currentStep={currentStep} />
-            <Box mb={4} />
-            <BrowserRouter basename="upload">
-              <React.Fragment>
-                {routes.map(route => (
-                  <Route
-                    key={route.path}
-                    exact={route.path === '/'}
-                    path={route.path}
-                    component={() => (
-                      <route.component
-                        getImageFieldRef={this.getImageFieldRef}
-                        nextStep={this.nextStep}
-                        previousStep={this.previousStep}
-                      />
-                    )}
-                  />
-                ))}
-              </React.Fragment>
-            </BrowserRouter>
+            <Box mb={3} />
+            <React.Fragment>
+              {routes.map(
+                (route: Object, index: number) =>
+                  index === currentStep && (
+                    <route.component
+                      key={route.path}
+                      getImageFieldRef={this.getImageFieldRef}
+                      nextStep={this.nextStep}
+                      previousStep={this.previousStep}
+                    />
+                  ),
+              )}
+            </React.Fragment>
           </Box>
         </Modal>
       </React.Fragment>
@@ -119,4 +136,19 @@ class UploadContainer extends React.Component<null, State> {
   }
 }
 
-export default UploadContainer;
+const mapStateToProps = store => ({
+  uploadModal: store.modals.uploadModal,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      closeUploadModal,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UploadContainer);

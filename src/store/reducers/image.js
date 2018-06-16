@@ -1,3 +1,4 @@
+// @flow
 import { IMAGE } from '../actions/image';
 
 const initialState = {
@@ -11,12 +12,13 @@ const initialState = {
   croppedImage: undefined,
 };
 
-export default (state = initialState, { type, ...payload }) => {
+export default (state: Object = initialState, { type, ...payload }: Object) => {
   switch (type) {
     case IMAGE.SET: {
       return {
         ...state,
         image: payload.image,
+        croppedImage: payload.image,
       };
     }
 

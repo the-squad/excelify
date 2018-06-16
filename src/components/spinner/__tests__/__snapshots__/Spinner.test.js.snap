@@ -9,7 +9,6 @@ exports[`Spinner should render 1`] = `
 }
 
 .c0 .path {
-  stroke: #06BEE1;
   stroke-linecap: round;
   -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
   animation: kuSBtA 1.5s ease-in-out infinite;
@@ -42,7 +41,6 @@ exports[`Spinner should render color correctly 1`] = `
 }
 
 .c0 .path {
-  stroke: #06BEE1;
   stroke-linecap: round;
   -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
   animation: kuSBtA 1.5s ease-in-out infinite;
@@ -75,7 +73,6 @@ exports[`Spinner should render radius correctly 1`] = `
 }
 
 .c0 .path {
-  stroke: #06BEE1;
   stroke-linecap: round;
   -webkit-animation: kuSBtA 1.5s ease-in-out infinite;
   animation: kuSBtA 1.5s ease-in-out infinite;
