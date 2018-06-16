@@ -41,11 +41,11 @@ const ErrorMessage = styled(Text)`
 
 type Props = {
   type: string,
-  width: number,
+  width: number | string,
   icon: Object,
   iconWidth: number,
   placeholder: string,
-  value: string,
+  value: ?string,
   onChange: Function,
   onBlur: Function,
   onFocus: Function,
@@ -129,7 +129,7 @@ class InputField extends React.Component<Props, State> {
           };
         }
       } else if (regexArray) {
-        regexArray.forEAch(check => {
+        regexArray.forEach(check => {
           if (shouldBreak) return;
           const regexResult = check.regex.test(value);
 
