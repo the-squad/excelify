@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::loginUsingId(1);
+// Auth::loginUsingId(1);
+
+header('Access-Control-Allow-Origin: *');
+header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
 
 Route::get('/', function () {
     return view('welcome');

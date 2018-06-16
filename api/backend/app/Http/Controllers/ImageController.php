@@ -15,7 +15,7 @@ class ImageController extends Controller
         $path = "images/" . uniqid() . ".png";
         $image = \Image::make($request->image);
         \Storage::disk('public')->put($path, $image->encode('png', 100));
-        $table = json_decode(exec('py "' . base_path('../test.py').'" '.$path));
+        $table = json_decode(exec('python3 "' . base_path('../test.py').'" '.$path));
         if (\Auth::check())
         {
             $this->storeImage($path,$table,$request->title);

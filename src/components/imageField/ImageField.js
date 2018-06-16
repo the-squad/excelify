@@ -12,11 +12,12 @@ class ImageField extends Component {
 
   uploadPhoto = () => {
     const file = this.photoInput.files[0];
+    const fileName = this.photoInput.files[0].name;
     this.photoInput.value = '';
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
-      this.onChange(fileReader.result, this.callbackParams);
+      this.onChange(fileReader.result, fileName, this.callbackParams);
     };
 
     if (file) {

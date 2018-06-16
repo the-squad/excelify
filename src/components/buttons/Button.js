@@ -46,7 +46,7 @@ class Button extends Component<Props, State> {
 
     if (primary) {
       textColor = disabled || isLoading ? COLORS.TEXT : COLORS.WHITE;
-      buttonBackground = disabled || isLoading ? COLORS.DISABLED : color;
+      buttonBackground = disabled || isLoading ? COLORS.DISABLED_LIGHT : color;
     } else {
       textColor = disabled || isLoading ? COLORS.TEXT : color;
       buttonBackground = COLORS.TRANSPARENT;

@@ -27,8 +27,8 @@ type Props = {
 };
 
 class Upload extends Component<Props> {
-  onUploadImage = image => {
-    this.props.saveImage(image);
+  onUploadImage = (image, imageName) => {
+    this.props.saveImage(image, imageName);
     this.props.nextStep();
   };
 

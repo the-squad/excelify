@@ -2,18 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import XLSX from 'xlsx';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Flex, Box } from 'grid-styled';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
 
-import { generateTable } from '../utils/GenerateTable';
+import { getPureTable } from '../utils/GenerateTable';
+import { updateCell } from '../store/actions/sheets';
 
 import Button from '../components/buttons/Button';
 import Text from '../components/text/Text';
+import { STATES } from '../components/renderer/Renderer';
+import EmptyState from '../components/emptyState/EmptyState';
+import Spinner from '../components/spinner/Spinner';
 
 import { COLORS, COLORS_VALUES } from '../base/Colors';
 import { FONT_TYPES } from '../base/Typography';
 import Space from '../base/Space';
+
+const FullHeight = styled(Flex)`
+  height: 92vh;
+`;
 
 const PageContainer = styled(Flex)`
   min-height: 95vh;
@@ -48,7 +57,9 @@ const ImagePreview = styled.img`
 `;
 
 type Props = {
-  sheets: Array<Array<Object>>,
+  sheets: Map,
+  sheetsState: Object,
+  updateCell: Function,
 };
 
 type State = {
@@ -69,58 +80,89 @@ class Sheet extends React.Component<Props, State> {
   onExport = () => {
     const { activeSheet } = this.state;
     const { sheets } = this.props;
-    const sheet = sheets[activeSheet];
-    const worksheet = XLSX.utils.aoa_to_sheet(sheet.sheet);
+    const sheet = sheets.get(activeSheet);
+    const worksheet = XLSX.utils.aoa_to_sheet(getPureTable(sheet.sheet));
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, sheet.name);
     XLSX.writeFile(workbook, `${sheet.name}.xlsx`);
   };
 
   render() {
-    const { sheets } = this.props;
+    const { sheets, sheetsState } = this.props;
     const { activeSheet } = this.state;
-    const currentSheet = sheets[activeSheet];
-    const table = generateTable(currentSheet.sheet);
+    const currentSheet = sheets.get(activeSheet);
 
     return (
-      <PageContainer>
-        <HistoryContainer flexDirection="column">
-          <HeaderContainer>
-            <Flex flexDirection="column">
-              <Text type={FONT_TYPES.HEADING}>Uploaded Images</Text>
-              <Text color={COLORS.DISABLED} type={FONT_TYPES.CAPTION}>
-                {sheets.length} images
-              </Text>
-            </Flex>
-          </HeaderContainer>
-          <HistoryGrid flexDirection="column">
-            {sheets.map((sheet, index) => (
-              <ImagePreview onClick={() => this.onSelect(index)} src={sheet.image} />
-            ))}
-          </HistoryGrid>
-        </HistoryContainer>
+      <React.Fragment>
+        {sheetsState.fold({
+          [STATES.LOADING]: () => (
+            <FullHeight alignItems="center" justifyContent="center" width={1}>
+              <Spinner />
+            </FullHeight>
+          ),
+          [STATES.EMPTY]: () => (
+            <FullHeight alignItems="center" justifyContent="center" width={1}>
+              <EmptyState icon="excel" text="You don't have any image uploaded" />
+            </FullHeight>
+          ),
+          [STATES.SUCCESS]: () => (
+            <PageContainer>
+              <HistoryContainer flexDirection="column">
+                <HeaderContainer>
+                  <Flex flexDirection="column">
+                    <Text type={FONT_TYPES.HEADING}>Uploaded Images</Text>
+                    <Text color={COLORS.DISABLED} type={FONT_TYPES.CAPTION}>
+                      {sheets.size} images
+                    </Text>
+                  </Flex>
+                </HeaderContainer>
+                <HistoryGrid flexDirection="column" width="238px">
+                  {Array.from(sheets.values()).map((sheet, index) => (
+                    <ImagePreview onClick={() => this.onSelect(index)} src={sheet.image} />
+                  ))}
+                </HistoryGrid>
+              </HistoryContainer>
 
-        <Flex flexDirection="column" width={1}>
-          <HeaderContainer justifyContent="space-between">
-            <Flex flexDirection="column">
-              <Text type={FONT_TYPES.HEADING}>{sheets[activeSheet].name}</Text>
-              <Text color={COLORS.DISABLED} type={FONT_TYPES.CAPTION}>
-                {sheets[activeSheet].date}
-              </Text>
-            </Flex>
-            <Button onClick={this.onExport} primary={false}>
-              Export as .xlsx
-            </Button>
-          </HeaderContainer>
-          <ReactDataSheet data={table} valueRenderer={cell => cell.value} />
-        </Flex>
-      </PageContainer>
+              <Flex flexDirection="column" width={1}>
+                <HeaderContainer justifyContent="space-between">
+                  <Flex flexDirection="column">
+                    <Text type={FONT_TYPES.HEADING}>{sheets.get(activeSheet).name}</Text>
+                    <Text color={COLORS.DISABLED} type={FONT_TYPES.CAPTION}>
+                      {sheets.get(activeSheet).date}
+                    </Text>
+                  </Flex>
+                  <Button onClick={this.onExport} primary={false}>
+                    Export as .xlsx
+                  </Button>
+                </HeaderContainer>
+                <ReactDataSheet
+                  data={currentSheet.sheet}
+                  valueRenderer={cell => cell.value}
+                  onCellsChanged={changes => this.props.updateCell(changes, activeSheet)}
+                />
+              </Flex>
+            </PageContainer>
+          ),
+        })}
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = store => ({
   sheets: store.sheets.sheets,
+  sheetsState: store.sheets.sheetsState,
 });
 
-export default connect(mapStateToProps)(Sheet);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      updateCell,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Sheet);
