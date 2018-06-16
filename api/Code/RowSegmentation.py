@@ -44,7 +44,7 @@ class RowSegmentation:
             segmentation_points.append((self.width, x))
         return sorted(segmentation_points, key=operator.itemgetter(1))
 
-    def segmentation(self):
+    def row_segmentation(self):
         img = self.convert_to_binary()
         segmentation_indices = self.get_segmentation_indices(img)
         segmentation_points = self.get_segmentation_points(segmentation_indices)

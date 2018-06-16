@@ -23,7 +23,7 @@ class CharacterSegmentation:
         return begin, last
 
     ##TODO//Refactor_function
-    def get_potential_gementation_col(self, col_white_pixels, word_beginning, word_ending):
+    def get_potential_segmentation_col(self, col_white_pixels, word_beginning, word_ending):
 
         start, end, threshold = 0, 0, 7
         potential_segmentation_col = [word_beginning]
@@ -58,7 +58,7 @@ class CharacterSegmentation:
 
         col_white_pixels = self.get_col_white_pixels()
         word_beginning, word_ending = self.get_word_boundaries(col_white_pixels)
-        potential_segmentation_col = self.get_potential_gementation_col(col_white_pixels, word_beginning, word_ending)
+        potential_segmentation_col = self.get_potential_segmentation_col(col_white_pixels, word_beginning, word_ending)
 
         cropedImage = []
         for i in range(0, len(potential_segmentation_col) - 1):

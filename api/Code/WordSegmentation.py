@@ -8,7 +8,7 @@ class WordSegmentation:
         self.original_image = original_image
         self.height, self.width = thinned_image.shape
 
-    def getFirstEmptyLine(self, loop_range):
+    def get_first_empty_line(self, loop_range):
         emptyRowIndex = -1
         for row in loop_range:
             whiteBixels = 0
@@ -21,28 +21,28 @@ class WordSegmentation:
                 break
         return emptyRowIndex
 
-    def removeEmptyLines(self, begin, end):
+    def remove_empty_lines(self, begin, end):
         self.thinned_image[begin:end, :] = 0
         self.original_image[begin:end, :] = 0
 
-    def removeHorizontalLines(self):
+    def remove_horizontal_lines(self):
 
         # remove below horizontal lines
-        emptyRowsBelow = self.getFirstEmptyLine(range(round(self.height / 2), self.height))
+        emptyRowsBelow = self.get_first_empty_line(range(round(self.height / 2), self.height))
         if (emptyRowsBelow != -1):
-            self.removeEmptyLines(emptyRowsBelow, self.height)
+            self.remove_empty_lines(emptyRowsBelow, self.height)
         else:
-            self.removeEmptyLines(self.height - 2, self.height)
+            self.remove_empty_lines(self.height - 2, self.height)
 
         # remove above horizontal lines
-        emptyRowsAbove = self.getFirstEmptyLine(reversed(range(0, round(self.height / 2))))
+        emptyRowsAbove = self.get_first_empty_line(reversed(range(0, round(self.height / 2))))
         if (emptyRowsAbove != -1):
-            self.removeEmptyLines(0, emptyRowsAbove)
+            self.remove_empty_lines(0, emptyRowsAbove)
         else:
-            self.removeEmptyLines(0, 2)
+            self.remove_empty_lines(0, 2)
 
     #TODO Refactor_function
-    def removeVerticalLines(self, thiningImage):
+    def remove_vertical_lines(self, thiningImage):
 
         # cv2.imshow("before",image)
         lineColsRight = []
@@ -143,10 +143,10 @@ class WordSegmentation:
         kernel = np.ones((20,segmentation_threshold ), np.uint8)
         return cv2.dilate(self.thinned_image, kernel, iterations=1)
 
-    def wordSegmentaion(self):
+    def word_segmentaion(self):
 
-        self.removeHorizontalLines()
-        self.thinned_image = self.removeVerticalLines(self.thinned_image)
+        self.remove_horizontal_lines()
+        self.thinned_image = self.remove_vertical_lines(self.thinned_image)
 
         # dilation
         img_dilation = self.get_dialation_image()
