@@ -249,7 +249,7 @@ def calc(thiningImage):
             counter = 0
     #return max(countArr)
 
-    # print(countArr)
+    ''''# print(countArr)
     avg=countArr[0]
     x=0
     for integer in countArr:
@@ -262,7 +262,24 @@ def calc(thiningImage):
         return avg
     else:
         return 1000
+    ###############################3'''
 
+
+    # print(countArr)
+    # print("UNsorted-----", countArr)
+    countArr.sort()
+
+    threshold = 0
+    x = 0
+    for i in reversed(range(len(countArr))):
+        if countArr[i] - countArr[i - 1] > 6 and i > 1:
+            threshold = countArr[i]
+            x = 1
+
+    if x == 1:
+        return threshold
+    else:
+        return 1000
 
 
 
@@ -321,7 +338,7 @@ def removeHorizontalLines(thiningImage,originalImage):
 
     return thiningImage,originalImage
 
-
+'''
 def removeVerticalLines(thiningImage):
 
     #cv2.imshow("before",image)
@@ -364,12 +381,21 @@ def removeVerticalLines(thiningImage):
 
     return thiningImage
 
+'''
+def removeVerticalLines(image):
+    # remove left Lines
+    image[:,0:2]=0
+    # remove right Lines
+    image[:,len(image[0])-2:len(image[0])]=0
 
+
+    return image
 
 def wordSegmentaion(thiningImage,originalImage):
     #cv2.imshow("before", thiningImage)
+    thiningImage = removeVerticalLines(thiningImage)
     thiningImage,originalImage=removeHorizontalLines(thiningImage,originalImage)
-    thiningImage=removeVerticalLines(thiningImage)
+
 
 
     #cv2.imshow("after",thiningImage)
@@ -511,7 +537,7 @@ def main():
     # os.makedirs("output\\words-result")
     # os.makedirs("output\\OriginalCols")
     # img = cv2.imread("Tables-examples\\table10.jpg")
-    img = cv2.imread("Tables-examples\\Table18.png")
+    img = cv2.imread("Tables-examples\\Table19.png")
 
     rowSegmentation(img)
     # predictCharacter(img)
