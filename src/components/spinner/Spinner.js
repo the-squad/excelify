@@ -32,7 +32,7 @@ const StyledSpinner = styled.svg`
 
 Spinner.defaultProps = {
   radius: 40,
-  color: COLORS.PRIMARY_BLUE,
+  color: COLORS.BLUE,
 };
 
 export default Spinner;
