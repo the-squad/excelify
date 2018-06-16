@@ -93,7 +93,7 @@ class Sheet extends React.Component<Props, State> {
               </Text>
             </Flex>
           </HeaderContainer>
-          <HistoryGrid flexDirection="column">
+          <HistoryGrid flexDirection="column" width="222px">
             {sheets.map((sheet, index) => (
               <ImagePreview onClick={() => this.onSelect(index)} src={sheet.image} />
             ))}
