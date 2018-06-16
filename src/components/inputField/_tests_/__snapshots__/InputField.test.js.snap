@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField should render 1`] = `
+.c3 {
+  color: danger;
+  font-weight: 500;
+  font-size: 13px;
+  font-display: fallback;
+}
+
+.c0 {
+  border: 1px solid;
+  border-color: text;
+  height: 38px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 4px;
+}
+
+.c1 {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #1b2733;
+  width: 100%;
+}
+
+.c2 {
+  height: 24px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width:40em) {
+  .c3 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c3 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c3 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width:40em) {
+  .c1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:52em) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width:64em) {
+  .c1 {
+    font-size: 14px;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <input
+      class="c1"
+      font-size="15px,15px,14px,14px"
+      placeholder="test"
+      type="string"
+    >
+      
+    </input>
+  </div>
+  <label
+    class="c2 c3"
+    color="danger"
+    font-size="13px,13px,12px,12px"
+    font-weight="500"
+    tag="label"
+    type="caption"
+  >
+    
+  </label>
+</div>
+`;
