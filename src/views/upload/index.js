@@ -73,6 +73,8 @@ class UploadContainer extends React.Component<Props, State> {
     if (prevProps.uploadModal !== this.props.uploadModal && this.modal) {
       if (this.props.uploadModal) {
         this.modal.openModal();
+      } else {
+        this.modal.closeModal();
       }
     }
   }
@@ -91,6 +93,12 @@ class UploadContainer extends React.Component<Props, State> {
     this.setState(prevState => ({
       currentStep: prevState.currentStep - 1,
     }));
+  };
+
+  resetStep = () => {
+    this.setState({
+      currentStep: 0,
+    });
   };
 
   render() {
@@ -125,6 +133,7 @@ class UploadContainer extends React.Component<Props, State> {
                       getImageFieldRef={this.getImageFieldRef}
                       nextStep={this.nextStep}
                       previousStep={this.previousStep}
+                      resetStep={this.resetStep}
                     />
                   ),
               )}
