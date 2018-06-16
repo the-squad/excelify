@@ -37,15 +37,15 @@ const routes = [
 const steps = [
   {
     title: 'Upload Image',
-    desc: 'Upload Image desc',
+    desc: 'Choose an image with these formats .png, .jpeg and .jpg',
   },
   {
     title: 'Crop Image',
-    desc: 'Crop Image desc',
+    desc: 'Crop the image to select table boundaries for better recognition',
   },
   {
     title: 'Edit Image',
-    desc: 'Edit Image desc',
+    desc: 'Change image brightness and contrast to highlight table lines',
   },
 ];
 
