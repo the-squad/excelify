@@ -80,7 +80,7 @@ describe('Button', () => {
     );
     expect(wrapper.instance().getButtonColors()).toEqual({
       textColor: COLORS.TEXT,
-      buttonBackground: COLORS.DISABLED,
+      buttonBackground: COLORS.DISABLED_LIGHT,
     });
   });
 
@@ -122,7 +122,7 @@ describe('Button', () => {
     );
     expect(wrapper.instance().getButtonColors()).toEqual({
       textColor: COLORS.TEXT,
-      buttonBackground: COLORS.DISABLED,
+      buttonBackground: COLORS.DISABLED_LIGHT,
     });
   });
 

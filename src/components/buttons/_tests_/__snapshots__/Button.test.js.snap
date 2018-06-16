@@ -343,7 +343,7 @@ exports[`Button should render disabled color correctly with primary type 1`] = `
   max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
-  background-color: #637282;
+  background-color: #f5f5f5;
 }
 
 .c0:not(:disabled) {
@@ -535,7 +535,7 @@ exports[`Button should render spinner when isLoading = true with primary type 1`
   max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
-  background-color: #637282;
+  background-color: #f5f5f5;
 }
 
 .c0:not(:disabled) {
