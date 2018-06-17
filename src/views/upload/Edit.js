@@ -4,8 +4,12 @@ import React, { Component } from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+
+import { convertImage } from '../../store/actions/image';
+import { closeUploadModal } from '../../store/actions/modals';
 
 import { COLORS, COLORS_VALUES } from '../../base/Colors';
 
@@ -39,9 +43,13 @@ injectGlobal`
 
 type Props = {
   image: string,
+  imageName: string,
   originalImage: string,
-  nextStep: Function,
+  isConverting: boolean,
   previousStep: Function,
+  closeUploadModal: Function,
+  convertImage: Function,
+  resetStep: Function,
 };
 
 type State = {
@@ -55,6 +63,17 @@ class Edit extends Component<Props, State> {
     image: this.props.image || this.props.originalImage,
     contrast: 0,
     brightness: 0,
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.isConverting !== this.props.isConverting && !this.props.isConverting) {
+      this.props.closeUploadModal();
+      this.props.resetStep();
+    }
+  }
+
+  onSubmit = () => {
+    this.props.convertImage(this.state.image, this.props.imageName);
   };
 
   onBrightnessChange = (value: number) => {
@@ -129,6 +148,7 @@ class Edit extends Component<Props, State> {
 
   render() {
     const { image, contrast, brightness } = this.state;
+    const { isConverting } = this.props;
 
     return (
       <Flex flexDirection="column">
@@ -162,10 +182,18 @@ class Edit extends Component<Props, State> {
           <Image src={image} />
         </Flex>
         <Flex justifyContent="flex-end" width={1} mt={3}>
-          <Button onClick={this.props.previousStep} primary={false} ml={2} color={COLORS.TEXT}>
+          <Button
+            disabled={isConverting}
+            onClick={this.props.previousStep}
+            primary={false}
+            ml={2}
+            color={COLORS.TEXT}
+          >
             Back
           </Button>
-          <Button onClick={this.props.nextStep}>Upload and Convert</Button>
+          <Button isLoading={isConverting} onClick={this.onSubmit}>
+            Upload and Convert
+          </Button>
         </Flex>
       </Flex>
     );
@@ -174,7 +202,21 @@ class Edit extends Component<Props, State> {
 
 const mapStateToProps = store => ({
   image: store.image.croppedImage,
+  imageName: store.image.imageName,
   originalImage: store.image.image,
+  isConverting: store.image.isConverting,
 });
 
-export default connect(mapStateToProps)(Edit);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      closeUploadModal,
+      convertImage,
+    },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Edit);

@@ -1,5 +1,7 @@
 // @flow
 
+import Lodash from 'lodash';
+
 const alphabetic = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Generates columns
@@ -30,6 +32,31 @@ export const generateRow = (row: Array<string | number>, rowIndex: number): Arra
       readOnly: index === 0,
     }),
   );
+
+export const removeRowCount = (row: Array<Object>): Array<Object> => {
+  const rowCopy: Array<Object> = Lodash.cloneDeep(row);
+  rowCopy.shift();
+  return rowCopy;
+};
+
+export const getPureTable = (table: Array<Array<Object>>): Array<Array<string | number>> => {
+  const cleanTable: Array<Array<Object>> = [];
+  const exportTable: Array<Array<string | number>> = [];
+
+  // Remove the first row and row's number cell's
+  for (let rowCounter = 1; rowCounter < 25; rowCounter += 1) {
+    // $FlowFixMe
+    cleanTable.push(removeRowCount(table[rowCounter]));
+  }
+
+  // Get cell's value
+  cleanTable.forEach((row: Array<Object>) => {
+    const rowItems = row.map((column: Object) => column.value);
+    exportTable.push(rowItems);
+  });
+
+  return exportTable;
+};
 
 export const generateTable = (rows: Array<Array<string | number>>): Array<Array<Object>> => {
   const table: Array<Array<Object>> = [];

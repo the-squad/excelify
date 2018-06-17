@@ -32,7 +32,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/sheet',
+    path: '/sheets',
     component: Sheet,
   },
 ];
