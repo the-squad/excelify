@@ -1,11 +1,11 @@
-import cv2
 from keras.models import load_model
+import os
 
 class Predict:
 
     def __init__(self):
-        self.mappings_path = "../Classification Model/emnist-balanced-mapping.txt"
-        self.model = load_model("../Classification Model/model.h5")
+        self.mappings_path = os.path.dirname(os.path.abspath(__file__))+"/../Classification Model/emnist-balanced-mapping.txt"
+        self.model = load_model(os.path.dirname(os.path.abspath(__file__))+"/../Classification Model/model.h5")
         self.mappings = self.load_char_mappings(self.mappings_path)
 
     def load_char_mappings(self,mapping_path):
