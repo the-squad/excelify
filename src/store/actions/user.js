@@ -13,11 +13,11 @@ export const login = (email: string, password: string): Object => ({
   password,
 });
 
-export const loggedIn = (name: string, email: string, userToken: string): Object => ({
+export const loggedIn = (name: string, email: string, token: string): Object => ({
   type: USER.LOGGED_IN,
   name,
   email,
-  userToken,
+  token,
 });
 
 export const signUp = (name: string, email: string, password: string): Object => ({
@@ -27,6 +27,6 @@ export const signUp = (name: string, email: string, password: string): Object =>
   password,
 });
 
-export const LOG_OUT = (): Object => ({
+export const logOut = (): Object => ({
   type: USER.LOG_OUT,
 });
