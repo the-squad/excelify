@@ -15,7 +15,11 @@ class ImageController extends Controller
         $path = "images/" . uniqid() . ".png";
         $image = \Image::make($request->image);
         \Storage::disk('public')->put($path, $image->encode('png', 100));
-        $table = json_decode(exec('python3 "' . base_path('../test.py').'" '.$path));
+        $imagePath = storage_path('app/public/'.$path);
+        $execPath = base_path('../Code/Mainn.py');
+        $python_path = config('app.python_path');
+        $this->my_shell_exec("$python_path \"$execPath\" \"$imagePath\"" ,$out,$error);
+        $table = json_decode($out);
         if (\Auth::check())
         {
             $this->storeImage($path,$table,$request->title);
@@ -36,5 +40,17 @@ class ImageController extends Controller
     public function history()
     {
         return \Auth::user()->images()->paginate();
+    }
+
+    function my_shell_exec($cmd, &$stdout=null, &$stderr=null) {
+        $proc = proc_open($cmd,[
+            1 => ['pipe','w'],
+            2 => ['pipe','w'],
+        ],$pipes);
+        $stdout = stream_get_contents($pipes[1]);
+        fclose($pipes[1]);
+        $stderr = stream_get_contents($pipes[2]);
+        fclose($pipes[2]);
+        return proc_close($proc);
     }
 }
