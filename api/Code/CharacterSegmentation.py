@@ -2,25 +2,14 @@ import cv2
 import math
 import numpy as np
 
+from api.Code.ImageSegmentation import ImageSegmentation
 
-class CharacterSegmentation:
+
+class CharacterSegmentation(ImageSegmentation):
     def __init__(self, thinned_image, original_image):
-        self.thinned_image = thinned_image
-        self.original_image = original_image
-        self.height, self.width = self.thinned_image.shape
+        super(CharacterSegmentation, self).__init__(thinned_image, original_image)
 
-    def get_word_boundaries(self, col_white_pixels):
-        begin = 0
-        for col in col_white_pixels:
-            if col > 0:
-                break
-            begin += 1
-        last = len(col_white_pixels)
-        for col in reversed(col_white_pixels):
-            if col > 0:
-                break
-            last -= 1
-        return begin, last
+
 
     ##TODO//Refactor_function
     def get_potential_segmentation_col(self, col_white_pixels, word_beginning, word_ending):
@@ -57,7 +46,7 @@ class CharacterSegmentation:
     def character_segmentation(self):
 
         col_white_pixels = self.get_col_white_pixels()
-        word_beginning, word_ending = self.get_word_boundaries(col_white_pixels)
+        word_beginning, word_ending = self.get_boundaries(col_white_pixels)
         potential_segmentation_col = self.get_potential_segmentation_col(col_white_pixels, word_beginning, word_ending)
 
         cropedImage = []

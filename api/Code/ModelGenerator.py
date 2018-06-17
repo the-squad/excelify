@@ -8,31 +8,14 @@ from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import MaxPooling2D, Dropout
 from tensorflow.python.keras.layers import Conv2D, Dense, Flatten
 
-class ModelGenrator:
+from api.Code.ModelProcessing import ModelProcessing
+
+
+class ModelGenrator(ModelProcessing):
     def __init__(self):
-        self.img_size = 28
-        self.img_size_flat = self.img_size * self.img_size
-        self.img_shape = (self.img_size, self.img_size)
-        self.img_shape_keras = (self.img_size, self.img_size, 1)
-        self.num_channels = 1
-        self.num_classes = 47
-        self.train_path = "emnist-balanced-train.csv"
-        self.test_path = "emnist-balanced-test.csv"
+        super(ModelGenrator,self).__init__()
+        self.train_path = "../Classification Model/emnist-balanced-train.csv"
 
-    def rotate(self,img):
-        flipped = np.fliplr(img.reshape(self.img_size, self.img_size))
-        return np.rot90(flipped).reshape(self.img_size, self.img_size, 1)
-
-    def preprocess_data(self,dataset):
-        X = dataset.iloc[:, 1:]
-        y = dataset.iloc[:, 0]
-        X = np.asarray(X).reshape(dataset.shape[0], self.img_size, self.img_size, 1).astype('float32')
-        X /= 255
-        for i in range(len(X)):
-            X[i] = self.rotate(X[i])
-        true_classes = y
-        y = np_utils.to_categorical(y, 47)
-        return X, y, true_classes
 
     def plot_accuracy(self,history):
         # summarize history for accuracy

@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
 
+from api.Code.ImageSegmentation import ImageSegmentation
 
-class WordSegmentation:
+
+class WordSegmentation(ImageSegmentation):
     def __init__(self, thinned_image, original_image):
-        self.thinned_image = thinned_image
-        self.original_image = original_image
-        self.height, self.width = thinned_image.shape
+        super(WordSegmentation,self).__init__(thinned_image,original_image)
 
     def get_first_empty_line(self, loop_range):
         emptyRowIndex = -1
@@ -90,18 +90,7 @@ class WordSegmentation:
         image[:, len(image[0]) - 2:len(image[0])] = 0
 
         return image
-    def get_phrase_boundaries(self, col_white_pixels):
-        begin = 0
-        for col in col_white_pixels:
-            if col > 0:
-                break
-            begin += 1
-        last = len(col_white_pixels)
-        for col in reversed(col_white_pixels):
-            if col > 0:
-                break
-            last -= 1
-        return begin, last
+
 
     def get_empty_sequential_cols_count(self, col_white_pixels, phrase_beginning, phrase_ending):
         empty_sequential_cols_count = []
@@ -128,7 +117,7 @@ class WordSegmentation:
             # arr[colIndex] = white_pixels if white_pixels < 1 else 2
             col_white_pixels[colIndex] = white_pixels
 
-        phrase_beginning, phrase_ending = self.get_phrase_boundaries(col_white_pixels)
+        phrase_beginning, phrase_ending = self.get_boundaries(col_white_pixels)
 
         countArr = self.get_empty_sequential_cols_count(col_white_pixels, phrase_beginning,
                                                                            phrase_ending)
@@ -138,7 +127,7 @@ class WordSegmentation:
         threshold = 0
         x = 0
         for i in reversed(range(len(countArr))):
-            if countArr[i] - countArr[i - 1] > 6 and i > 1:
+            if countArr[i] - countArr[i - 1] > 15 and i > 1:
                 threshold = countArr[i]
                 x = 1
 
