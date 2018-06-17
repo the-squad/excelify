@@ -5,6 +5,8 @@ import operator
 import thinning as p
 from keras.models import load_model
 
+from api.Code.ImageParser import ImageParser
+
 MIN_CONTOUR_AREA = 100
 
 RESIZED_IMAGE_WIDTH = 500
@@ -548,7 +550,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    img = cv2.imread("Tables-examples\\Table10.png")
+    sheet = ImageParser.parse(img)
+    print(sheet)
+    # main()
     # end i
 
 

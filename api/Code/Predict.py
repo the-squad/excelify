@@ -1,10 +1,12 @@
+import cv2
 from keras.models import load_model
 
 class Predict:
 
     def __init__(self):
-        self.mappings_path = "C:\\Users\\mohamed\\Desktop\\Final\\emnist-balanced-mapping.txt"
-        self.model = load_model("C:\\Users\\mohamed\\Documents\\GitHub\\graduation-project\\api\\Code\\Model\\model.h5")
+        self.mappings_path = "../Classification Model/emnist-balanced-mapping.txt"
+        self.model = load_model("../Classification Model/model.h5")
+        self.mappings = self.load_char_mappings(self.mappings_path)
 
     def load_char_mappings(self,mapping_path):
         """
@@ -19,9 +21,8 @@ class Predict:
         return mappings
 
     def predict(self,image):
-        mappings = self.load_char_mappings(self.mappings_path)
         img = image.reshape(1, 28, 28, 1)
         img = img.astype('float64')
-        img /= 10
+        # img /= 10
         y_pred_int = self.model.predict_classes(img)
-        return chr(mappings.get(y_pred_int[0]))
+        return chr(self.mappings.get(y_pred_int[0]))

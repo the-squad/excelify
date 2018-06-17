@@ -42,47 +42,54 @@ class WordSegmentation:
             self.remove_empty_lines(0, 2)
 
     #TODO Refactor_function
-    def remove_vertical_lines(self, thiningImage):
+    # def remove_vertical_lines(self, thiningImage):
+    #
+    #     # cv2.imshow("before",image)
+    #     lineColsRight = []
+    #     lineColsleft = []
+    #     NoOfPixelsCol = []
+    #
+    #     # remove left Lines
+    #     for col in range(len(thiningImage[0])):
+    #         whiteBixels = 0
+    #         for row in range(len(thiningImage)):
+    #             if thiningImage[row, col] == 255:
+    #                 whiteBixels += 1
+    #
+    #         if whiteBixels == 0:
+    #             break
+    #         else:
+    #             lineColsleft.append(col)
+    #             NoOfPixelsCol.append(whiteBixels)
+    #     for col, NoOFPixel in zip(lineColsleft, NoOfPixelsCol):
+    #         if NoOFPixel > 3:
+    #             thiningImage[:, col] = 0
+    #
+    #     # remove right Lines
+    #     for col in reversed(range(len(thiningImage[0]))):
+    #         whiteBixels = 0
+    #         for row in range(len(thiningImage)):
+    #             if thiningImage[row, col] == 255:
+    #                 whiteBixels += 1
+    #
+    #         if whiteBixels == 0:
+    #             break
+    #         else:
+    #             lineColsRight.append(col)
+    #             NoOfPixelsCol.append(whiteBixels)
+    #     for col, NoOFPixel in zip(lineColsRight, NoOfPixelsCol):
+    #         if NoOFPixel > 3:
+    #             thiningImage[:, col] = 0
+    #
+    #     return thiningImage
 
-        # cv2.imshow("before",image)
-        lineColsRight = []
-        lineColsleft = []
-        NoOfPixelsCol = []
-
+    def removeVerticalLines(self,image):
         # remove left Lines
-        for col in range(len(thiningImage[0])):
-            whiteBixels = 0
-            for row in range(len(thiningImage)):
-                if thiningImage[row, col] == 255:
-                    whiteBixels += 1
-
-            if whiteBixels == 0:
-                break
-            else:
-                lineColsleft.append(col)
-                NoOfPixelsCol.append(whiteBixels)
-        for col, NoOFPixel in zip(lineColsleft, NoOfPixelsCol):
-            if NoOFPixel > 3:
-                thiningImage[:, col] = 0
-
+        image[:, 0:2] = 0
         # remove right Lines
-        for col in reversed(range(len(thiningImage[0]))):
-            whiteBixels = 0
-            for row in range(len(thiningImage)):
-                if thiningImage[row, col] == 255:
-                    whiteBixels += 1
+        image[:, len(image[0]) - 2:len(image[0])] = 0
 
-            if whiteBixels == 0:
-                break
-            else:
-                lineColsRight.append(col)
-                NoOfPixelsCol.append(whiteBixels)
-        for col, NoOFPixel in zip(lineColsRight, NoOfPixelsCol):
-            if NoOFPixel > 3:
-                thiningImage[:, col] = 0
-
-        return thiningImage
-
+        return image
     def get_phrase_boundaries(self, col_white_pixels):
         begin = 0
         for col in col_white_pixels:
@@ -123,18 +130,20 @@ class WordSegmentation:
 
         phrase_beginning, phrase_ending = self.get_phrase_boundaries(col_white_pixels)
 
-        empty_sequential_cols_count = self.get_empty_sequential_cols_count(col_white_pixels, phrase_beginning,
+        countArr = self.get_empty_sequential_cols_count(col_white_pixels, phrase_beginning,
                                                                            phrase_ending)
 
-        interword_spaces = empty_sequential_cols_count[0]
-        flag = 0
-        for count in empty_sequential_cols_count:
-            if count - interword_spaces > 4:
-                interword_spaces = count
-                flag = 1
+        countArr.sort()
 
-        if flag == 1:
-            return interword_spaces
+        threshold = 0
+        x = 0
+        for i in reversed(range(len(countArr))):
+            if countArr[i] - countArr[i - 1] > 6 and i > 1:
+                threshold = countArr[i]
+                x = 1
+
+        if x == 1:
+            return threshold
         else:
             return 1000
 
@@ -145,8 +154,8 @@ class WordSegmentation:
 
     def word_segmentaion(self):
 
+        self.thinned_image = self.removeVerticalLines(self.thinned_image)
         self.remove_horizontal_lines()
-        self.thinned_image = self.remove_vertical_lines(self.thinned_image)
 
         # dilation
         img_dilation = self.get_dialation_image()

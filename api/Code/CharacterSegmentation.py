@@ -70,7 +70,7 @@ class CharacterSegmentation:
 
         for img in cropedImage:
             img = np.pad(img, pad_width=2, mode='constant')
-            char_image = cv2.bitwise_not(cv2.resize(img, (28, 28), cv2.INTER_CUBIC))
+            char_image = cv2.resize(img, (28, 28), cv2.INTER_CUBIC)
             characters.append(char_image)
             # cv2.imwrite("output\\characterSegmentation\\" + str(counter()) + ".png", charimage)
 
