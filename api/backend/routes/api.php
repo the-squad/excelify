@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('parse','ImageController@parse');
-Route::middleware('auth')->get('history','ImageController@history');
+Route::get('history/{user}','ImageController@history');
+
+Route::post('login', 'UserController@Login');
+Route::post('register', 'UserController@Register');
+Route::get('user/{user}', 'UserController@getUser');
