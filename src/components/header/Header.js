@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Cookies from 'js-cookie';
 
 import Text from '../text/Text';
 import Button from '../buttons/Button';
@@ -15,7 +16,7 @@ import { COLORS_VALUES, COLORS } from '../../base/Colors';
 import Space from '../../base/Space';
 import { FONT_TYPES } from '../../base/Typography';
 
-import { logOut } from '../../store/actions/user';
+import { logOut, loadUser } from '../../store/actions/user';
 import { openUploadModal } from '../../store/actions/modals';
 
 type Props = {
@@ -24,6 +25,7 @@ type Props = {
   email: string,
   history: Object,
   logOut: Function,
+  loadUser: Function,
   openUploadModal: Function,
 };
 
@@ -67,30 +69,44 @@ const LogoutButton = styled.button`
   }
 `;
 
-const Header = (props: Props) => (
-  <HeaderContainer alignItems="center" justifyContent="space-between" {...props}>
-    <Logo tag="h1" key="logo" type={FONT_TYPES.TITLE} m="0">
-      Cerberus
-    </Logo>
-    <Flex>
-      <Button onClick={props.openUploadModal}>Convert Image</Button>
-      {props.name && (
-        <Flex justifyContent="center" height={1}>
-          <Divider ml={3} />
-          <LogoutButton
-            onClick={() => {
-              props.logOut();
-              props.history.push('/');
-            }}
-          >
-            <Text mr={2}>Logout</Text>
-            <Icon icon={IconsStore.getIcon('log-out')} width={17} />
-          </LogoutButton>
+class Header extends React.Component<Props> {
+  componentDidMount() {
+    const token = Cookies.get('GP_TOKEN');
+    const name = Cookies.get('GP_NAME');
+    if (token && name) {
+      this.props.loadUser(name, token);
+    }
+  }
+
+  render() {
+    const { name, history } = this.props;
+
+    return (
+      <HeaderContainer alignItems="center" justifyContent="space-between" {...this.props}>
+        <Logo tag="h1" key="logo" type={FONT_TYPES.TITLE} m="0">
+          Excelify
+        </Logo>
+        <Flex>
+          <Button onClick={this.props.openUploadModal}>Convert Image</Button>
+          {name && (
+            <Flex justifyContent="center" height={1}>
+              <Divider ml={3} />
+              <LogoutButton
+                onClick={() => {
+                  this.props.logOut();
+                  history.push('/');
+                }}
+              >
+                <Text mr={2}>Logout</Text>
+                <Icon icon={IconsStore.getIcon('log-out')} width={17} />
+              </LogoutButton>
+            </Flex>
+          )}
         </Flex>
-      )}
-    </Flex>
-  </HeaderContainer>
-);
+      </HeaderContainer>
+    );
+  }
+}
 
 const mapStateToProps = store => ({
   name: store.user.name,
@@ -102,6 +118,7 @@ const mapDispatchToProps = dispatch =>
     {
       openUploadModal,
       logOut,
+      loadUser,
     },
     dispatch,
   );
