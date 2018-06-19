@@ -54,6 +54,7 @@ const ICON_WIDTH = 16;
 type Props = {
   isLoggingIn: boolean,
   isLoggedIn: boolean,
+  isError: boolean,
   history: Object,
   login: Function,
   signUp: Function,
@@ -76,6 +77,16 @@ class Home extends Component<Props, State> {
     if (prevProps.isLoggedIn !== this.props.isLoggedIn) {
       this.props.history.push('sheets');
     }
+
+    if (prevProps.isError !== this.props.isError && this.props.isError === true) {
+      if (this.state.form === SIGNUP_FORM) {
+        if (this.emailField) {
+          this.emailField.showErrorMessage('Email already exists');
+        }
+      } else if (this.emailField) {
+        this.emailField.showErrorMessage('Wrong credentials');
+      }
+    }
   }
 
   onLogin = () => {
@@ -96,9 +107,16 @@ class Home extends Component<Props, State> {
     }
   };
 
-  nameField: {};
-  emailField: {};
-  passwordField: {};
+  nameField: {
+    hideErrorMessage: Function,
+  };
+  emailField: {
+    showErrorMessage: Function,
+    hideErrorMessage: Function,
+  };
+  passwordField: {
+    hideErrorMessage: Function,
+  };
 
   updateFieldValue = (value: string, type: string) => {
     this.setState({
@@ -107,6 +125,10 @@ class Home extends Component<Props, State> {
   };
 
   changeForm = (form: number) => {
+    this.emailField.hideErrorMessage();
+    this.nameField.hideErrorMessage();
+    this.passwordField.hideErrorMessage();
+
     this.setState({
       form,
     });
@@ -288,6 +310,7 @@ class Home extends Component<Props, State> {
 const mapStateToProps = store => ({
   isLoggedIn: store.user.isLoggedIn,
   isLoggingIn: store.user.isLoggingIn,
+  isError: store.user.isError,
 });
 
 const mapDispatchToProps = dispatch =>
