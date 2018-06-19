@@ -35,11 +35,7 @@ const HistoryContainer = styled(Flex)`
 
 const HistoryGrid = styled(Box)`
   display: grid;
-  grid-template-columns: auto auto;
-  grid-column-gap: 6px;
   grid-auto-rows: auto;
-  grid-row-gap: 6px;
-  padding: ${Space[4]}px;
 `;
 
 const HeaderContainer = styled(Flex)`
@@ -49,11 +45,13 @@ const HeaderContainer = styled(Flex)`
 `;
 
 const ImagePreview = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 220px;
+  height: auto;
   object-fit: cover;
   border-radius: 2px;
   cursor: pointer;
+  border: 4px solid
+    ${props => (props.isActive ? COLORS_VALUES[COLORS.BLUE] : COLORS_VALUES[COLORS.DISABLED_LIGHT])};
 `;
 
 type Props = {
@@ -90,7 +88,6 @@ class Sheet extends React.Component<Props, State> {
   render() {
     const { sheets, sheetsState } = this.props;
     const { activeSheet } = this.state;
-    const currentSheet = sheets.get(activeSheet);
 
     return (
       <React.Fragment>
@@ -110,15 +107,20 @@ class Sheet extends React.Component<Props, State> {
               <HistoryContainer flexDirection="column">
                 <HeaderContainer>
                   <Flex flexDirection="column">
-                    <Text type={FONT_TYPES.HEADING}>Uploaded Images</Text>
+                    <Text type={FONT_TYPES.HEADING}>History</Text>
                     <Text color={COLORS.DISABLED} type={FONT_TYPES.CAPTION}>
                       {sheets.size} images
                     </Text>
                   </Flex>
                 </HeaderContainer>
-                <HistoryGrid flexDirection="column" width="238px">
+                <HistoryGrid flexDirection="column">
                   {Array.from(sheets.values()).map((sheet, index) => (
-                    <ImagePreview onClick={() => this.onSelect(index)} src={sheet.image} />
+                    <ImagePreview
+                      key={sheet.name}
+                      isActive={index === activeSheet}
+                      onClick={() => this.onSelect(index)}
+                      src={sheet.image}
+                    />
                   ))}
                 </HistoryGrid>
               </HistoryContainer>
@@ -136,7 +138,7 @@ class Sheet extends React.Component<Props, State> {
                   </Button>
                 </HeaderContainer>
                 <ReactDataSheet
-                  data={currentSheet.sheet}
+                  data={sheets.get(activeSheet).sheet}
                   valueRenderer={cell => cell.value}
                   onCellsChanged={changes => this.props.updateCell(changes, activeSheet)}
                 />

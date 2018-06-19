@@ -8,7 +8,7 @@ const HEIGHT = 1024;
 
 export type Props = {
   icon: Object,
-  width: number,
+  width: ?number,
   color?: string,
 };
 

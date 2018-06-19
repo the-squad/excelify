@@ -5,6 +5,7 @@ import styled, { injectGlobal } from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
@@ -46,6 +47,7 @@ type Props = {
   imageName: string,
   originalImage: string,
   isConverting: boolean,
+  history: Object,
   previousStep: Function,
   closeUploadModal: Function,
   convertImage: Function,
@@ -69,6 +71,9 @@ class Edit extends Component<Props, State> {
     if (prevProps.isConverting !== this.props.isConverting && !this.props.isConverting) {
       this.props.closeUploadModal();
       this.props.resetStep();
+      if (!window.location.pathname.includes('/sheets')) {
+        this.props.history.push('/sheets');
+      }
     }
   }
 
@@ -219,4 +224,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Edit);
+)(withRouter(Edit));

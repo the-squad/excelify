@@ -3,6 +3,7 @@
 import axios from 'axios';
 import HttpsStatus from 'http-status-codes';
 import { takeEvery, put } from 'redux-saga/effects';
+import Cookies from 'js-cookie';
 
 import { IMAGE, convertImageSucceeded, convertImageFailed } from '../actions/image';
 import { generateTable } from '../../utils/GenerateTable';
@@ -13,6 +14,7 @@ function* convertImage(action: Object) {
   const response = yield axios.post(Urls.parse, {
     title: action.imageName,
     image: action.image,
+    user_id: Cookies.get('GP_TOKEN'),
   });
 
   if (response.status === HttpsStatus.OK) {
