@@ -1,6 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should render 1`] = `
+.c3 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .c2 {
   margin: 0;
   color: text;
@@ -9,7 +17,7 @@ exports[`Header should render 1`] = `
   font-display: fallback;
 }
 
-.c4 {
+.c5 {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -19,7 +27,7 @@ exports[`Header should render 1`] = `
   font-display: fallback;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -47,7 +55,7 @@ exports[`Header should render 1`] = `
   background-color: blue;
 }
 
-.c3:not(:disabled) {
+.c4:not(:disabled) {
   cursor: pointer;
 }
 
@@ -94,19 +102,19 @@ exports[`Header should render 1`] = `
 }
 
 @media screen and (min-width:40em) {
-  .c4 {
+  .c5 {
     font-size: 15px;
   }
 }
 
 @media screen and (min-width:52em) {
-  .c4 {
+  .c5 {
     font-size: 14px;
   }
 }
 
 @media screen and (min-width:64em) {
-  .c4 {
+  .c5 {
     font-size: 14px;
   }
 }
@@ -126,23 +134,27 @@ exports[`Header should render 1`] = `
     tag="h1"
     type="title"
   >
-    Cerberus
+    Excelify
   </h1>
-  <button
+  <div
     class="c3"
-    color="blue"
   >
-    <span
+    <button
       class="c4"
-      color="white"
-      font-size="15px,15px,14px,14px"
-      font-weight="500"
-      tag="span"
-      type="body"
-      width="max-content"
+      color="blue"
     >
-      Convert Image
-    </span>
-  </button>
+      <span
+        class="c5"
+        color="white"
+        font-size="15px,15px,14px,14px"
+        font-weight="500"
+        tag="span"
+        type="body"
+        width="max-content"
+      >
+        Convert Image
+      </span>
+    </button>
+  </div>
 </div>
 `;
