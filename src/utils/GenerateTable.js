@@ -28,7 +28,7 @@ export const generateRow = (row: Array<string | number>, rowIndex: number): Arra
   Array.from(alphabetic).map(
     (_: any, index: number): Object => ({
       name: row[index],
-      value: index === 0 ? rowIndex : row[index],
+      value: index === 0 ? rowIndex : row[index - 1],
       readOnly: index === 0,
     }),
   );
