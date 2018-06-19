@@ -1,33 +1,38 @@
 // @flow
 
-// import axios from 'axios';
-// import HttpsStatus from 'http-status-codes';
+import axios from 'axios';
+import HttpsStatus from 'http-status-codes';
 import { takeEvery, put } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 
-import { USER, loggedIn } from '../actions/user';
+import { USER, loggedIn, emailAlreadyExists, wrongLoginData } from '../actions/user';
 
-// import Urls from '../../Urls';
+import Urls from '../../Urls';
 
-function* loginSaga() {
-  // TODO: Enable once the API is ready
-  // const response = yield axios.get(Urls.history);
-  // if (response.status === HttpsStatus.OK) {
-  //   yield put(loggedIn('Muhammad Tarek', 'muhammad.test@test.com', '4324'));
-  // }
+function* loginSaga(action) {
+  const response = yield axios
+    .post(Urls.login, {
+      email: action.email,
+      password: action.password,
+    })
+    .catch(() => put(wrongLoginData()));
 
-  yield delay(500, true);
-  yield put(loggedIn('Muhammad Tarek', 'muhammad.test@test.com', '4324'));
+  if (response.status === HttpsStatus.OK) {
+    yield put(loggedIn(response.data.name, response.data.email, response.data.id));
+  }
 }
 
-function* signUpSaga() {
-  // TODO: Enable once the API is ready
-  // const response = yield axios.get(Urls.history);
-  // if (response.status === HttpsStatus.OK) {
-  //   yield put(loggedIn('Muhammad Tarek', 'muhammad.test@test.com', '4324'));
-  // }
-  yield delay(500, true);
-  yield put(loggedIn('Muhammad Tarek', 'muhammad.test@test.com', '4324'));
+function* signUpSaga(action) {
+  const response = yield axios
+    .post(Urls.signup, {
+      name: action.name,
+      email: action.email,
+      password: action.password,
+    })
+    .catch(() => put(emailAlreadyExists()));
+
+  if (response.status === HttpsStatus.OK) {
+    yield put(loggedIn(action.name, action.email, response.data.id));
+  }
 }
 
 function* sheetsSaga(): Object {

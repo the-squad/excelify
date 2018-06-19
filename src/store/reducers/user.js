@@ -5,13 +5,14 @@ import Cookies from 'js-cookie';
 import { USER } from '../actions/user';
 
 const NAME = 'GP_NAME';
-const TOKEN = 'GT_TOKEN';
+const TOKEN = 'GP_TOKEN';
 const initialState = {
   name: undefined,
   email: undefined,
   token: undefined,
   isLoggedIn: false,
   isLoggingIn: false,
+  isError: false,
 };
 
 export default (state: Object = initialState, { type, ...payload }: Object) => {
@@ -40,6 +41,7 @@ export default (state: Object = initialState, { type, ...payload }: Object) => {
         token: undefined,
         isLoggedIn: false,
         isLoggingIn: false,
+        isError: false,
       };
     }
 
@@ -48,6 +50,24 @@ export default (state: Object = initialState, { type, ...payload }: Object) => {
       return {
         ...state,
         isLoggingIn: true,
+        isError: false,
+      };
+    }
+
+    case USER.EMAIL_EXISTS: {
+      return {
+        ...state,
+        isError: true,
+        isLoggingIn: false,
+      };
+    }
+
+    case USER.LOAD: {
+      return {
+        ...state,
+        isLoggedIn: true,
+        name: payload.name,
+        token: payload.token,
       };
     }
 

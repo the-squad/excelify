@@ -2,11 +2,12 @@
 
 import _ from 'lodash';
 
+import { USER } from '../actions/user';
 import { SHEETS } from '../actions/sheets';
 import { IMAGE } from '../actions/image';
 
-import { generateTable } from '../../utils/GenerateTable';
 import { renderer } from '../../components/renderer/Renderer';
+import { generateTable } from '../../utils/GenerateTable';
 
 const initialState = {
   sheets: new Map(),
@@ -15,13 +16,27 @@ const initialState = {
 
 export default (state: Object = initialState, { type, ...payload }: Object) => {
   switch (type) {
-    case SHEETS.SET: {
-      const newSheets = state.sheets;
-      newSheets.set(newSheets.size, generateTable(payload.sheets));
+    case SHEETS.LOADED: {
+      const sheets: Map<number, Object> = new Map();
+      payload.sheets.forEach((sheet, index) =>
+        sheets.set(index, {
+          name: sheet.title,
+          image: sheet.image,
+          sheet: generateTable(sheet.table),
+          date: sheet.date,
+        }),
+      );
 
       return {
-        ...state,
-        sheets: newSheets,
+        sheetsState: payload.sheets.length === 0 ? renderer.empty() : renderer.success(),
+        sheets,
+      };
+    }
+
+    case USER.LOAD:
+    case USER.LOGGED_IN: {
+      return {
+        sheetsState: renderer.loading(),
       };
     }
 
