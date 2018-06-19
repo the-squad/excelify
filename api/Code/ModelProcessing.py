@@ -1,3 +1,7 @@
+import numpy as np
+from keras.utils import np_utils
+
+
 class ModelProcessing:
     def __init__(self):
         self.img_size = 28

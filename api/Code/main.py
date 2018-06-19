@@ -550,7 +550,7 @@ def main():
 
 
 if __name__ == "__main__":
-    img = cv2.imread("Tables-examples\\Table15.png")
+    img = cv2.imread("Tables-examples\\Table26.png")
     sheet = ImageParser()
     sheet = sheet.parse(img)
     print(sheet)
