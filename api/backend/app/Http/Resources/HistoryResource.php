@@ -18,6 +18,7 @@ class HistoryResource extends JsonResource
             "image" => asset("/storage/" . $this->path),
             "title" => $this->title,
             "table" => $this->table,
+            "date" => $this->created_at->diffForHumans(),
         ];
     }
 }
