@@ -9,8 +9,42 @@ class CharacterSegmentation(ImageSegmentation):
     def __init__(self, thinned_image, original_image):
         super(CharacterSegmentation, self).__init__(thinned_image, original_image)
 
+    def add_padding(self ,img, pad_l, pad_t, pad_r, pad_b):
+        height, width = img.shape
+        # Adding padding to the left side.
+        pad_left = np.zeros((height, pad_l), dtype=np.int)
+        img = np.concatenate((pad_left, img), axis=1)
 
+        # Adding padding to the top.
+        pad_up = np.zeros((pad_t, pad_l + width))
+        img = np.concatenate((pad_up, img), axis=0)
 
+        # Adding padding to the right.
+        pad_right = np.zeros((height + pad_t, pad_r))
+        img = np.concatenate((img, pad_right), axis=1)
+
+        # Adding padding to the bottom
+        pad_bottom = np.zeros((pad_b, pad_l + width + pad_r))
+        img = np.concatenate((img, pad_bottom), axis=0)
+
+        return img
+
+    def crop(self , image):
+        col_sum = np.where(np.sum(image, axis=0) > 0)
+        row_sum = np.where(np.sum(image, axis=1) > 0)
+        y1, y2 = row_sum[0][0], row_sum[0][-1]
+        x1, x2 = col_sum[0][0], col_sum[0][-1]
+        return image[y1:y2, x1:x2]
+
+    def center_image(self ,image):
+        cropped_image = self.crop(image)
+        height, width = cropped_image.shape
+        diff = abs(height - width) / 2
+        if (width > height):
+            return cv2.resize(self.add_padding(cropped_image, 5, math.ceil(diff) + 5, 5, math.floor(diff) + 5), (28, 28))
+        elif (width < height):
+            return cv2.resize(self.add_padding(cropped_image, math.ceil(diff) + 5, 5, math.floor(diff) + 5, 5), (28, 28))
+        return cv2.resize(cropped_image, (28, 28))
     ##TODO//Refactor_function
     def get_potential_segmentation_col(self, col_white_pixels, word_beginning, word_ending):
 
@@ -58,9 +92,13 @@ class CharacterSegmentation(ImageSegmentation):
         characters = []
 
         for img in cropedImage:
-            img = np.pad(img, pad_width=2, mode='constant')
-            char_image = cv2.resize(img, (28, 28), cv2.INTER_CUBIC)
-            characters.append(char_image)
+            height , width = img.shape
+            # img = np.pad(img, pad_width=2, mode='constant')
+            # char_image = cv2.resize(img, (28, 28), cv2.INTER_CUBIC)
+            try:
+                characters.append(self.center_image(img))
+            except:
+                pass
             # cv2.imwrite("output\\characterSegmentation\\" + str(counter()) + ".png", charimage)
 
         return characters

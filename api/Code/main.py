@@ -118,7 +118,7 @@ def characterSegmentation(thinning_img, originalImage):
 
         charimage = cv2.bitwise_not(cv2.resize(img, (28, 28), cv2.INTER_CUBIC))
         # predictCharacter(charimage)
-        cv2.imwrite("output\\characterSegmentation\\" + str(counter()) + ".png", charimage)
+        # cv2.imwrite("output\\characterSegmentation\\" + str(counter()) + ".png", charimage)
 
 
 def colSegmentation(img):
@@ -155,7 +155,7 @@ def colSegmentation(img):
         original_croped_image = original_imgage[0:height, Boundries[i]:Boundries[i + 1]]
         imgNumber = str(counter())
         if len(thining_croped_image[0]) > 10 and len(thining_croped_image) > 10:
-            cv2.imwrite("output\\cols\\" + imgNumber + ".png", original_croped_image)
+            # cv2.imwrite("output\\cols\\" + imgNumber + ".png", original_croped_image)
             wordSegmentaion(thining_croped_image, original_croped_image)
 
 
@@ -436,7 +436,7 @@ def wordSegmentaion(thiningImage,originalImage):
         if (height > 8 and width > 8):
             print("3")
             # cv2.imshow('segment no:' + str(i), roi)
-            cv2.imwrite("output\\wordSegmentation\\" + str(counter()) + ".png", roi_original)
+            # cv2.imwrite("output\\wordSegmentation\\" + str(counter()) + ".png", roi_original)
             #cv2.imwrite("output\\wordSegmentation\\"+str(counter()) + "thined.png", roi2_thining)
             cv2.rectangle(thiningImage, (x, y), (x + w, y + h), (90, 0, 255), 2)
             characterSegmentation(roi2_thining, roi_original)
@@ -476,7 +476,7 @@ def rowSegmentation(img):
         if x <= len(points) - 3:
             croppedImage = img[points[x][1]:points[x + 3][1], points[x][0]:points[x + 3][0]]
             if len(croppedImage) > 10:
-                cv2.imwrite("output\\rows\\" + str(x) + ".png", croppedImage)
+                # cv2.imwrite("output\\rows\\" + str(x) + ".png", croppedImage)
                 colSegmentation(croppedImage)
 
 
