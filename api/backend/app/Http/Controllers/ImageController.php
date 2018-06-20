@@ -12,6 +12,7 @@ class ImageController extends Controller
 {
     public function parse(Request $request)
     {
+        set_time_limit(0);
         $this->validate($request, [
             "image" => "required"
         ]);
