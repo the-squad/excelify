@@ -1,4 +1,4 @@
-# excelify
+# Excelify
 
 Convert handwritten sheets into Excel one
 
@@ -16,13 +16,6 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 #### Front-end part
-
-Rename `example.env` to `.env` and add the keys you generated
-
-```sh
-REACT_APP_UNSPLASH_APP_ID=
-REACT_APP_UNSPLASH_ACCESS_CODE=
-```
 
 Install the required packages and run the local server
 
