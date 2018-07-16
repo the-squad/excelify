@@ -12,6 +12,12 @@ These instructions will get you a copy of the project up and running on your loc
 * [php](http://php.net/)
 * [composer](https://getcomposer.org/)
 * [python](https://www.python.org/downloads/)
+* [keras](https://keras.io/)
+* cv2
+* [numpy](http://www.numpy.org/)
+* [pandas](https://pandas.pydata.org/)
+* [matplotlib](https://matplotlib.org/)
+* [tensorflow](https://www.tensorflow.org/)
 
 ### Installing
 
